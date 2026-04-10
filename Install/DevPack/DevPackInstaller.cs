@@ -1,4 +1,4 @@
-﻿namespace Skyline.DataMiner.SDM.ObjectLinking.Install.DevPack
+﻿namespace Skyline.DataMiner.Solutions.ObjectLinking.Install.DevPack
 {
 	using System;
 	using System.Collections.Generic;

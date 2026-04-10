@@ -26,7 +26,7 @@ type: Standard Solution
 # If the ID is filled in but does not exist yet, a new Catalog item will be registered with this ID.
 # If the ID is filled in but does exist, properties of the item will be overwritten.
 #   Must be a valid GUID.
-id: 87652a57-bccf-4146-807e-e0c9b84bc66a
+id: fc085eae-dbc4-4d81-9758-096d46f7330d
 
 # [Required]
 # The human-friendly name of the Catalog item.
@@ -34,7 +34,7 @@ id: 87652a57-bccf-4146-807e-e0c9b84bc66a
 #   Max length: 100 characters.
 #   Cannot contain newlines.
 #   Cannot contain leading or trailing whitespace characters.
-title: SDM Object Linking
+title: Object Linking
 
 # [Optional]
 # General information about the Catalog item.
@@ -45,13 +45,13 @@ short_description: The Object Linking solution gives you the tools to link objec
 # A valid URL that points to the source code.
 #   A valid URL
 #   Max length: 2048 characters
-source_code_url: https://github.com/SkylineCommunications/SLC-SDM-ObjectLinking
+source_code_url: https://github.com/SkylineCommunications/Skyline.DataMiner.Dev.Utils.Solutions.ObjectLinking
 
 # [Optional]
 # A valid URL that points to documentation.
 #   A valid URL
 #   Max length: 2048 characters
-documentation_url: https://github.com/SkylineCommunications/SLC-SDM-ObjectLinking/tree/main/docs
+documentation_url: https://github.com/SkylineCommunications/Skyline.DataMiner.Dev.Utils.Solutions.ObjectLinking/tree/1.0.X/docs
 
 # [Optional]
 # People who are responsible for this Catalog item. Might be developers, but this is not required.
@@ -69,5 +69,4 @@ owners:
 #   Cannot contain newlines.
 #   Cannot contain leading or trailing whitespace characters.
 tags:
-  - dataminer
   - Standard Data Model

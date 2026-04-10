@@ -51,17 +51,14 @@ DATE		VERSION		AUTHOR			COMMENTS
 
 using System;
 using System.IO;
-using System.Runtime.Remoting.Contexts;
-
-using Shared;
 
 using Skyline.AppInstaller;
-using Skyline.ArtifactInstaller;
 using Skyline.DataMiner.Automation;
 using Skyline.DataMiner.Core.DataMinerSystem.Automation;
 using Skyline.DataMiner.Net.AppPackages;
-using Skyline.DataMiner.SDM.ObjectLinking.Install.DevPack;
-using Skyline.DataMiner.SDM.ObjectLinking.Install.DOM;
+using Skyline.DataMiner.Solutions.ObjectLinking.Install.DevPack;
+using Skyline.DataMiner.Solutions.ObjectLinking.Install.DOM;
+using Skyline.DataMiner.Solutions.ObjectLinking.Shared;
 using Skyline.DataMiner.Utils.SecureCoding.SecureIO;
 
 /// <summary>

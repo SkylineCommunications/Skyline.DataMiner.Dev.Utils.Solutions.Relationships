@@ -13,4 +13,7 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 	</ItemGroup>
+
+	<!-- Can be used to set the location of your local nuget store to copy to -->
+	<Import Project="../Directory.Build.props.user" Condition="Exists('../Directory.Build.props.user')" />
 </Project>

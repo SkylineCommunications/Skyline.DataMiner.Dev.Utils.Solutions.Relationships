@@ -1,0 +1,34 @@
+<Solution>
+    <Folder Name="/Solution Items/">
+        <File Path=".gitignore" />
+        <File Path="Directory.Build.props" />
+        <File Path="Directory.Build.props.user" />
+        <File Path="Directory.Packages.props" />
+        <File Path="global.json" />
+        <File Path="LICENSE.txt" />
+        <File Path="README.md" />
+    </Folder>
+    <Folder Name="/Solution Items/.github/">
+        <File Path=".github\CODEOWNERS" />
+        <File Path=".github\dependabot.yml" />
+    </Folder>
+    <Folder Name="/Solution Items/.github/workflows/">
+        <File Path=".github/workflows/Master Workflow.yml" />
+    </Folder>
+    <Project Path="ObjectLinking.Automation\ObjectLinking.Automation.csproj" />
+    <Project Path="ObjectLinking.Common\ObjectLinking.Common.csproj" />
+    <Project Path="ObjectLinking.CommonTests\ObjectLinking.CommonTests.csproj" />
+    <Project Path="ObjectLinking.GQI\ObjectLinking.GQI.csproj" />
+    <Project Path="ObjectLinking.Protocol\ObjectLinking.Protocol.csproj" />
+    <Project Path="ObjectLinking.Shared\ObjectLinking.Shared.shproj" />
+    <Folder Name="/Install/">
+        <Project Path="Install\ObjectLinking.Install.csproj">
+            <BuildDependency Project="ObjectLinking.Automation\ObjectLinking.Automation.csproj" />
+            <BuildDependency Project="ObjectLinking.Common\ObjectLinking.Common.csproj" />
+            <BuildDependency Project="ObjectLinking.GQI\ObjectLinking.GQI.csproj" />
+            <BuildDependency Project="ObjectLinking.Protocol\ObjectLinking.Protocol.csproj" />
+        </Project>
+        <Project Path="Install.Registration\ObjectLinking.Install.Registration.csproj" />
+        <Project Path="Install.DOM\ObjectLinking.Install.DOM.csproj" />
+    </Folder>
+</Solution>

@@ -1,22 +1,15 @@
-﻿namespace Skyline.DataMiner.SDM.ObjectLinking.Install.DOM
+﻿namespace Skyline.DataMiner.Solutions.ObjectLinking.Install.DOM
 {
 	using System;
 	using System.Linq;
-	using System.Runtime.Remoting.Contexts;
 
-	using global::ObjectLinking.Install.DOM;
-
-	using Shared;
-
-	using Skyline.ArtifactInstaller;
-	using Skyline.DataMiner.Automation;
 	using Skyline.DataMiner.Net.Apps.DataMinerObjectModel;
-	using Skyline.DataMiner.Net.Apps.Modules;
 	using Skyline.DataMiner.Net.GenericEnums;
 	using Skyline.DataMiner.Net.Sections;
+	using Skyline.DataMiner.Solutions.ObjectLinking.Shared;
 	using Skyline.DataMiner.Utils.DOM.Builders;
 
-	public partial class DomInstaller
+	internal partial class DomInstaller
 	{
 		private void InstallLinks(DomHelper helper)
 		{

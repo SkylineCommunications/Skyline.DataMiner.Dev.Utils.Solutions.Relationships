@@ -1,11 +1,7 @@
-﻿// Ignore Spelling: SDM
-
-namespace Skyline.DataMiner.SDM.ObjectLinking.Install.DOM
+﻿namespace Skyline.DataMiner.Solutions.ObjectLinking.Install.DOM
 {
 	using System;
 	using System.Linq;
-
-	using global::ObjectLinking.Install.DOM;
 
 	using Skyline.DataMiner.Automation;
 	using Skyline.DataMiner.Net;
@@ -16,7 +12,7 @@ namespace Skyline.DataMiner.SDM.ObjectLinking.Install.DOM
 	using Skyline.DataMiner.Net.Sections;
 	using Skyline.DataMiner.Utils.DOM.Builders;
 
-	public partial class DomInstaller
+	internal partial class DomInstaller
 	{
 		private readonly IEngine _engine;
 		private readonly IConnection _connection;

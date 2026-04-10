@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>net48</TargetFramework>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<RootNamespace>Skyline.DataMiner.SDM.ObjectLinking.Install</RootNamespace>
+		<RootNamespace>Skyline.DataMiner.Solutions.ObjectLinking.Install</RootNamespace>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -36,28 +36,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Reference Include="System.ServiceProcess" />
+		<Reference Include="System.ServiceProcess" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="SetupContent\DevPack\" />
+		<Folder Include="SetupContent\DevPack\" />
 	</ItemGroup>
 
-	<Import Project="..\Shared\Shared.projitems" Label="Shared" />
-
-	<!-- Project reference to ensure build order: Common builds first and copies DLL to SetupContent -->
-	<ItemGroup>
-		<ProjectReference Include="..\API.Common\ObjectLinking.Common.csproj">
-			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-		</ProjectReference>
-		<ProjectReference Include="..\API.Automation\ObjectLinking.Automation.csproj">
-			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-		</ProjectReference>
-		<ProjectReference Include="..\API.GQI\ObjectLinking.GQI.csproj">
-			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-		</ProjectReference>
-		<ProjectReference Include="..\API.Protocol\ObjectLinking.Protocol.csproj">
-			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-		</ProjectReference>
-	</ItemGroup>
+	<Import Project="..\ObjectLinking.Shared\ObjectLinking.Shared.projitems" Label="Shared" />
 </Project>

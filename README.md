@@ -18,16 +18,16 @@ The entry point for the library is the **ObjectLinker**. You can use it to creat
 ```csharp
 // Getting the object linker
 
-// Automation Scripts -> nuget Skyline.DataMiner.SDM.ObjectLinking.Automation
+// Automation Scripts -> nuget Skyline.DataMiner.Solutions.ObjectLinking.Automation
 var linker = engine.GetObjectLinker();
 
-// Connectors -> nuget Skyline.DataMiner.SDM.ObjectLinking.Protocol
+// Connectors -> nuget Skyline.DataMiner.Solutions.ObjectLinking.Protocol
 var linker = protocol.GetObjectLinker();
 
-// GQI -> nuget Skyline.DataMiner.SDM.ObjectLinking.GQI
+// GQI -> nuget Skyline.DataMiner.Solutions.ObjectLinking.GQI
 var linker = args.DMS.GetObjectLinker(); // In the OnInit life cycle method
 
-// Other -> nuget Skyline.DataMiner.SDM.ObjectLinking.Common
+// Other -> nuget Skyline.DataMiner.Solutions.ObjectLinking.Common
 var linker = connection.GetObjectLinker();
 ```
 

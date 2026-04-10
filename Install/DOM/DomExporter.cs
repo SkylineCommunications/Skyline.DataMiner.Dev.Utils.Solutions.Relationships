@@ -1,4 +1,4 @@
-﻿namespace ObjectLinking.Install.DOM
+﻿namespace Skyline.DataMiner.Solutions.ObjectLinking.Install.DOM
 {
 	using System;
 	using System.Collections.Generic;
@@ -16,14 +16,14 @@
 	using Skyline.DataMiner.Net.Messages;
 	using Skyline.DataMiner.Net.Messages.SLDataGateway;
 
-	public class ItemProgressEventArgs : EventArgs
+	internal class ItemProgressEventArgs : EventArgs
 	{
 		public ItemProgressEventArgs(int items) => Items = items;
 
 		public int Items { get; internal set; }
 	}
 
-	public class DomExporter
+	internal class DomExporter
 	{
 		private static readonly JsonSerializer JsonSerializer = JsonSerializer.Create(new JsonSerializerSettings
 		{

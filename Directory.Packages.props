@@ -19,11 +19,11 @@
     <PackageVersion Include="Skyline.DataMiner.Dev.Common" Version="10.5.9.2" />
     <PackageVersion Include="Skyline.DataMiner.Dev.Protocol" Version="10.5.9.2" />
     <PackageVersion Include="Skyline.DataMiner.Dev.Utils.SDM.Abstractions" Version="1.0.1" />
+    <PackageVersion Include="Skyline.DataMiner.Dev.Utils.Solutions.ObjectLinking.Automation" Version="0.0.1" />
     <PackageVersion Include="Skyline.DataMiner.Files.Skyline.DataMiner.Storage.Types" Version="10.5.9.2" />
     <PackageVersion Include="Skyline.DataMiner.Files.SLNetTypes" Version="10.5.9.2" />
     <PackageVersion Include="Skyline.DataMiner.SDM" Version="1.0.1" />
     <PackageVersion Include="Skyline.DataMiner.SDM.Linq" Version="1.0.1" />
-    <PackageVersion Include="Skyline.DataMiner.SDM.ObjectLinking.Automation" Version="0.2.0-B002" />
     <PackageVersion Include="Skyline.DataMiner.SDM.Registration.Automation" Version="2.0.3" />
     <PackageVersion Include="Skyline.DataMiner.SDM.SourceGenerator.Runtime" Version="1.0.1" />
     <PackageVersion Include="Skyline.DataMiner.Utils.DOM" Version="10.5.2.6" />

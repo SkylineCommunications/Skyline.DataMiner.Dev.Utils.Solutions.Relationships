@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+		<PlatformTarget>AnyCpu</PlatformTarget>
+		<LangVersion>latest</LangVersion>
+		<OutputType>Library</OutputType>
+		<AssemblyTitle>Skyline.DataMiner.Dev.Utils.Solutions.ObjectLinking.Automation</AssemblyTitle>
+		<Product>Skyline.DataMiner.Dev.Utils.Solutions.ObjectLinking.Automation</Product>
+		<AssemblyName>Skyline.DataMiner.Dev.Utils.Solutions.ObjectLinking.Automation</AssemblyName>
+		<RootNamespace>Skyline.DataMiner.Solutions.ObjectLinking.Automation</RootNamespace>
+
+		<PackageId>Skyline.DataMiner.Dev.Utils.Solutions.ObjectLinking.Automation</PackageId>
+		<PackageTags>Skyline;DataMiner</PackageTags>
+		<PackageProjectUrl>https://skyline.be</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<PackageIcon>Icon.png</PackageIcon>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+
+		<Authors>SkylineCommunications</Authors>
+		<Company>Skyline Communications</Company>
+		<Description>Contains the common models and helper classes to interact with the standard object linking model.</Description>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/SkylineCommunications/Skyline.DataMiner.Dev.Utils.Solutions.ObjectLinking</RepositoryUrl>
+		<Deterministic>false</Deterministic>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="README.md" Pack="true" PackagePath="" />
+		<None Include="..\LICENSE.txt" Pack="true" PackagePath="" />
+		<None Include="nuget\Icon.png" Pack="true" PackagePath="" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Skyline.DataMiner.Dev.Automation" />
+		<PackageReference Include="Skyline.DataMiner.Utils.SecureCoding.Analyzers">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\ObjectLinking.Common\ObjectLinking.Common.csproj" />
+	</ItemGroup>
+
+	<Target Name="CopyDllToSetupContent" AfterTargets="Build">
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="..\Install\SetupContent\DevPack" />
+	</Target>
+
+	<!-- Can be used to set the location of your local nuget store to copy to -->
+	<Import Project="../Directory.Build.props.user" Condition="Exists('../Directory.Build.props.user')" />
+	<Target Name="CopyNuGetPackage" AfterTargets="Pack" Condition="'$(NuGetStorePath)' != '' and '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<Copy SourceFiles="$(OutputPath)..\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(NuGetStorePath)\$(PackageId)" />
+	</Target>
+</Project>

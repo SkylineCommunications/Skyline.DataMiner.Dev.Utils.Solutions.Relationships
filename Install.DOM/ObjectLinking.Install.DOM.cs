@@ -5,18 +5,15 @@ namespace InstallDOM
 	using System.Linq;
 
 	using DomHelpers.SlcObject_Linking;
+	using DomHelpers.SlcObject_Linking_Old;
 
 	using Newtonsoft.Json;
 
-	using ObjectLinking.Install.DOM;
-
 	using Skyline.DataMiner.Automation;
 	using Skyline.DataMiner.Net.Apps.DataMinerObjectModel;
-	using Skyline.DataMiner.Net.Apps.Modules;
 	using Skyline.DataMiner.Net.Helper;
+	using Skyline.DataMiner.Net.ManagerStore;
 	using Skyline.DataMiner.Net.Messages.SLDataGateway;
-	using Skyline.DataMiner.SDM;
-	using Skyline.DataMiner.SDM.ObjectLinking;
 
 	/// <summary>
 	/// Represents a DataMiner Automation script.
@@ -65,20 +62,19 @@ namespace InstallDOM
 			var amount = 0;
 			var success = 0;
 
-			var linker = engine.GetObjectLinker();
 			var helper = new DomHelper(engine.SendSLNetMessages, SlcObject_LinkingIds.ModuleId);
 
 			var filter = new ANDFilterElement<DomInstance>(
-				DomInstanceExposers.DomDefinitionId.Equal(SlcObject_LinkingIds.Definitions.Link.Id),
-				DomInstanceExposers.FieldValues.KeyExists(SlcObject_LinkingIds.Sections.EntityDescriptor.ID.Id.ToString()).Equal(true));
+				DomInstanceExposers.DomDefinitionId.Equal(SlcObject_LinkingIds_Old.Definitions.Link.Id),
+				DomInstanceExposers.FieldValues.KeyExists(SlcObject_LinkingIds_Old.Sections.EntityDescriptor.ID.Id.ToString()).Equal(true));
 			var pagingHelper = helper.DomInstances.PreparePaging(filter, helper.DomInstances.MaxAmountBulkOperation - 5);
 			while (pagingHelper.MoveToNextPage())
 			{
 				var page = pagingHelper.GetCurrentPage();
 
 				var toBeRemoved = new List<DomInstance>();
-				var links = new List<Link>();
-				var batch = page.Select(instance => new LinkInstance(instance));
+				var links = new List<LinkInstance>();
+				var batch = page.Select(instance => new LinkInstance_Old(instance));
 				batch.ForEach(link =>
 				{
 					try
@@ -106,13 +102,14 @@ namespace InstallDOM
 
 				try
 				{
-					linker.Links.CreateOrUpdate(links);
+					helper.DomInstances.CreateOrUpdate(links.Cast<DomInstance>().ToList());
+					helper.DomInstances.Delete(toBeRemoved);
 					success += page.Count;
 				}
-				catch (SdmBulkCrudException<Link> ex)
+				catch (BulkCrudFailedException<DomInstance> ex)
 				{
 					engine.Log($"Failed to migrate a batch of links: {ex}");
-					success += ex.SuccessfulItems.Count;
+					success += ex.Result.SuccessfulIds.Count;
 				}
 			}
 
@@ -120,10 +117,10 @@ namespace InstallDOM
 			engine.AddOrUpdateScriptOutput("success", Convert.ToString(success));
 		}
 
-		private static List<Link> TranslateToNewFormat(LinkInstance linkInstance, out DomInstance removed)
+		private static List<LinkInstance> TranslateToNewFormat(LinkInstance_Old linkInstance, out DomInstance removed)
 		{
 			removed = null;
-			var result = new List<Link>();
+			var result = new List<LinkInstance>();
 
 			if (linkInstance is null ||
 				linkInstance.EntityDescriptor.Count == 0)
@@ -135,7 +132,7 @@ namespace InstallDOM
 			// First check if it's an easy translation, meaning only 2 entity descriptors, one source and one target.
 			if (linkInstance.EntityDescriptor.Count == 2)
 			{
-				result.Add(TranslateToNewFormat(linkInstance.EntityDescriptor[0], linkInstance.EntityDescriptor[1], linkInstance.ID.Id.ToString()));
+				result.Add(TranslateToNewFormat(linkInstance.EntityDescriptor[0], linkInstance.EntityDescriptor[1], linkInstance.ID.Id));
 				return result;
 			}
 
@@ -170,14 +167,16 @@ namespace InstallDOM
 			return result;
 		}
 
-		private static Link TranslateToNewFormat(EntityDescriptorSection section1, EntityDescriptorSection section2, string linkIdentifier = null)
+		private static LinkInstance TranslateToNewFormat(EntityDescriptorSection_Old section1, EntityDescriptorSection_Old section2, Guid? linkIdentifier = null)
 		{
-			var identifier = linkIdentifier ?? Guid.NewGuid().ToString();
-			return new Link
+			var identifier = linkIdentifier ?? Guid.NewGuid();
+			return new LinkInstance(identifier)
 			{
-				Identifier = identifier,
-				Direction = Skyline.DataMiner.SDM.ObjectLinking.Models.LinkDirection.Symmetric,
-				Source = new EntityDescriptor
+				LinkProperties = new LinkPropertiesSection
+				{
+					Direction = SlcObject_LinkingIds.Enums.Direction.Symmetric,
+				},
+				SourceEntityDescriptor = new SourceEntityDescriptorSection
 				{
 					ID = section1.ID,
 					DisplayName = section1.DisplayName,
@@ -187,15 +186,15 @@ namespace InstallDOM
 					ParentID = section1.ParentID,
 					ParentModelName = section1.ParentModelName,
 				},
-				Target = new EntityDescriptor
+				TargetEntityDescriptor = new TargetEntityDescriptorSection
 				{
-					ID = section1.ID,
-					DisplayName = section1.DisplayName,
-					ModelName = String.IsNullOrEmpty(section1.ModelName) ? "Migrated" : section1.ModelName,
-					SolutionID = String.IsNullOrEmpty(section1.SolutionName) ? "Migrated" : section1.SolutionName, // SolutionID is not available in the old format, so we use the SolutionName as a fallback.
-					SolutionName = String.IsNullOrEmpty(section1.SolutionName) ? "Migrated" : section1.SolutionName,
-					ParentID = section1.ParentID,
-					ParentModelName = section1.ParentModelName,
+					ID = section2.ID,
+					DisplayName = section2.DisplayName,
+					ModelName = String.IsNullOrEmpty(section2.ModelName) ? "Migrated" : section2.ModelName,
+					SolutionID = String.IsNullOrEmpty(section2.SolutionName) ? "Migrated" : section2.SolutionName, // SolutionID is not available in the old format, so we use the SolutionName as a fallback.
+					SolutionName = String.IsNullOrEmpty(section2.SolutionName) ? "Migrated" : section2.SolutionName,
+					ParentID = section2.ParentID,
+					ParentModelName = section2.ParentModelName,
 				},
 			};
 		}

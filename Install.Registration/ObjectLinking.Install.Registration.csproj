@@ -26,5 +26,5 @@
 		</PackageReference>
 	</ItemGroup>
 
-	<Import Project="..\Shared\Shared.projitems" Label="Shared" />
+	<Import Project="..\ObjectLinking.Shared\ObjectLinking.Shared.projitems" Label="Shared" />
 </Project>

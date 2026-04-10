@@ -1,11 +1,13 @@
 namespace ObjectLinkingInstallRegistration
 {
 	using System;
+	using System.Linq;
 
-	using Shared;
-
+	using Skyline.DataMiner.Analytics.GenericInterface.JoinFilter;
 	using Skyline.DataMiner.Automation;
+	using Skyline.DataMiner.Net.Messages.SLDataGateway;
 	using Skyline.DataMiner.SDM.Registration;
+	using Skyline.DataMiner.Solutions.ObjectLinking.Shared;
 
 	/// <summary>
 	/// Represents a DataMiner Automation script.
@@ -52,11 +54,21 @@ namespace ObjectLinkingInstallRegistration
 
 		private void RunSafe(ScriptContext context)
 		{
-			// Register the solution
 			var registrar = context.Engine.GetSdmRegistrar();
+
+			// Cleanup old registrations if they exist, to ensure a clean state.
+			var oldRegistartion = registrar.Solutions.Read(SolutionRegistrationExposers.Identifier.Equal("a5e01a18-7704-40fc-b2d4-b4b02b096ba9")).FirstOrDefault();
+			if (!(oldRegistartion is null))
+			{
+				var oldModels = registrar.Models.Read(ModelRegistrationExposers.Solution.Equal(oldRegistartion)).ToArray();
+				registrar.Models.Delete(oldModels);
+				registrar.Solutions.Delete(oldRegistartion);
+			}
+
+			// Register the solution
 			var solution = new SolutionRegistration
 			{
-				Identifier = "a5e01a18-7704-40fc-b2d4-b4b02b096ba9",
+				Identifier = "f949ad1f-367c-4966-8c69-8525ceb267cc",
 				ID = Constants.CatalogIdentifier,
 				DisplayName = "SDM Object Linking",
 				Version = context.Version,
@@ -66,10 +78,10 @@ namespace ObjectLinkingInstallRegistration
 
 			var linkModel = new ModelRegistration
 			{
-				Identifier = "ddebbe81-7f39-41d0-aed6-6c4079baaa96",
+				Identifier = "ebd8dc13-4118-4653-a6b0-ecb9f0a7db29",
 				Name = "standard_data_model_object_link",
 				DisplayName = "SDM Object Link",
-				Version = "1.0.2",
+				Version = "1.0.0",
 				Solution = solution,
 			};
 

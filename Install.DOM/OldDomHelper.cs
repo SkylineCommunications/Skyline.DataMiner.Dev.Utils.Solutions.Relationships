@@ -452,7 +452,7 @@ namespace DomHelpers
 //     Changes to this file will be lost if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-namespace DomHelpers.SlcObject_Linking
+namespace DomHelpers.SlcObject_Linking_Old
 {
 	using System;
 	using System.ComponentModel;
@@ -460,7 +460,7 @@ namespace DomHelpers.SlcObject_Linking
 	using Skyline.DataMiner.Net.Apps.DataMinerObjectModel;
 	using Skyline.DataMiner.Net.Sections;
 
-	internal static class SlcObject_LinkingIds
+	internal static class SlcObject_LinkingIds_Old
 	{
 		public const string ModuleId = "(slc)object_linking";
 		public static class Enums
@@ -499,47 +499,49 @@ namespace DomHelpers.SlcObject_Linking
 //     Changes to this file will be lost if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-namespace DomHelpers.SlcObject_Linking
+namespace DomHelpers.SlcObject_Linking_Old
 {
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+
+	using DomHelpers;
 
 	using Skyline.DataMiner.Net.Apps.DataMinerObjectModel;
 	using Skyline.DataMiner.Net.Messages;
 
 	/// <summary>
 	/// Represents a wrapper class for accessing a LinkInstance DOM instance.
-	/// The <see cref="LinkInstance"/> class provides simplified access to the data and functionality of the underlying DOM instance, allowing for easier manipulation and retrieval of data from DOM.
+	/// The <see cref="LinkInstance_Old"/> class provides simplified access to the data and functionality of the underlying DOM instance, allowing for easier manipulation and retrieval of data from DOM.
 	/// </summary>
-	internal partial class LinkInstance : DomInstanceBase
+	internal partial class LinkInstance_Old : DomInstanceBase
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="LinkInstance"/> class. Creates an empty <see cref="LinkInstance"/> instance with default settings.
+		/// Initializes a new instance of the <see cref="LinkInstance_Old"/> class. Creates an empty <see cref="LinkInstance_Old"/> instance with default settings.
 		/// </summary>
-		public LinkInstance() : base(SlcObject_LinkingIds.Definitions.Link)
+		public LinkInstance_Old() : base(SlcObject_LinkingIds_Old.Definitions.Link)
 		{
 			InitializeProperties();
 			AfterLoad();
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="LinkInstance"/> class. Creates an empty <see cref="LinkInstance"/> instance with default settings and a specific ID.
+		/// Initializes a new instance of the <see cref="LinkInstance_Old"/> class. Creates an empty <see cref="LinkInstance_Old"/> instance with default settings and a specific ID.
 		/// </summary>
-		public LinkInstance(Guid id) : base(SlcObject_LinkingIds.Definitions.Link, id)
+		public LinkInstance_Old(Guid id) : base(SlcObject_LinkingIds_Old.Definitions.Link, id)
 		{
 			InitializeProperties();
 			AfterLoad();
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="LinkInstance"/> class using the specified <paramref name="domInstance"/> for initializing the object.
+		/// Initializes a new instance of the <see cref="LinkInstance_Old"/> class using the specified <paramref name="domInstance"/> for initializing the object.
 		/// </summary>
-		/// <param name="domInstance">The <see cref="DomInstance"/> object that provides data for initializing the <see cref="LinkInstance"/>. If the section is <c>null</c>, the constructor will not perform any initialization.</param>
-		public LinkInstance(DomInstance domInstance) : base(domInstance)
+		/// <param name="domInstance">The <see cref="DomInstance"/> object that provides data for initializing the <see cref="LinkInstance_Old"/>. If the section is <c>null</c>, the constructor will not perform any initialization.</param>
+		public LinkInstance_Old(DomInstance domInstance) : base(domInstance)
 		{
-			if (!domInstance.DomDefinitionId.Equals(SlcObject_LinkingIds.Definitions.Link))
-				throw new ArgumentException($"The given domInstance, is not of type '{nameof(SlcObject_LinkingIds.Definitions.Link)}'", nameof(domInstance));
+			if (!domInstance.DomDefinitionId.Equals(SlcObject_LinkingIds_Old.Definitions.Link))
+				throw new ArgumentException($"The given domInstance, is not of type '{nameof(SlcObject_LinkingIds_Old.Definitions.Link)}'", nameof(domInstance));
 			InitializeProperties();
 			AfterLoad();
 		}
@@ -547,27 +549,27 @@ namespace DomHelpers.SlcObject_Linking
 		/// <summary>
 		/// Gets or sets the EntityDescriptor section of the DOM Instance.
 		/// </summary>
-		public IList<EntityDescriptorSection> EntityDescriptor { get; private set; }
+		public IList<EntityDescriptorSection_Old> EntityDescriptor { get; private set; }
 
-		public static explicit operator LinkInstance(DomInstance instance)
+		public static explicit operator LinkInstance_Old(DomInstance instance)
 		{
-			return new LinkInstance(instance);
+			return new LinkInstance_Old(instance);
 		}
 
 		/// <summary>
-		/// Creates a deep copy of the current <see cref="LinkInstance"/>.
+		/// Creates a deep copy of the current <see cref="LinkInstance_Old"/>.
 		/// </summary>
-		/// <returns>A new <see cref="LinkInstance"/> object that is a deep copy of this instance.</returns>
-		public LinkInstance Clone()
+		/// <returns>A new <see cref="LinkInstance_Old"/> object that is a deep copy of this instance.</returns>
+		public LinkInstance_Old Clone()
 		{
-			return new LinkInstance((DomInstance)this.ToInstance().Clone());
+			return new LinkInstance_Old((DomInstance)this.ToInstance().Clone());
 		}
 
 		/// <summary>
-		/// Creates a duplicate of the current <see cref="LinkInstance"/> with a new id.
+		/// Creates a duplicate of the current <see cref="LinkInstance_Old"/> with a new id.
 		/// </summary>
-		/// <returns>A new <see cref="LinkInstance"/> object that is a copy of this instance but with a different id.</returns>
-		public LinkInstance Duplicate()
+		/// <returns>A new <see cref="LinkInstance_Old"/> object that is a copy of this instance but with a different id.</returns>
+		public LinkInstance_Old Duplicate()
 		{
 			var instance = (DomInstance)this.ToInstance().Clone();
 			instance.ID = new DomInstanceId(Guid.NewGuid())
@@ -577,7 +579,7 @@ namespace DomHelpers.SlcObject_Linking
 				section.ID = new Skyline.DataMiner.Net.Sections.SectionID(Guid.NewGuid());
 			}
 
-			return new LinkInstance(instance);
+			return new LinkInstance_Old(instance);
 		}
 
 		/// <inheritdoc />
@@ -609,7 +611,7 @@ namespace DomHelpers.SlcObject_Linking
 
 		protected sealed override void InitializeProperties()
 		{
-			EntityDescriptor = domInstance.Sections.Where(section => section.SectionDefinitionID.Equals(SlcObject_LinkingIds.Sections.EntityDescriptor.Id)).Select(section => new EntityDescriptorSection(section)).ToList();
+			EntityDescriptor = domInstance.Sections.Where(section => section.SectionDefinitionID.Equals(SlcObject_LinkingIds_Old.Sections.EntityDescriptor.Id)).Select(section => new EntityDescriptorSection_Old(section)).ToList();
 		}
 	}
 }
@@ -619,12 +621,14 @@ namespace DomHelpers.SlcObject_Linking
 //     Changes to this file will be lost if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-namespace DomHelpers.SlcObject_Linking
+namespace DomHelpers.SlcObject_Linking_Old
 {
 	using System;
 	using System.Collections.Generic;
 	using System.Collections.ObjectModel;
 	using System.Linq;
+
+	using DomHelpers;
 
 	using Skyline.DataMiner.Net.Apps.DataMinerObjectModel;
 	using Skyline.DataMiner.Net.Apps.Sections.Sections;
@@ -633,22 +637,22 @@ namespace DomHelpers.SlcObject_Linking
 
 	/// <summary>
 	/// Represents a wrapper class for accessing a EntityDescriptorSection section.
-	/// The <see cref="EntityDescriptorSection"/> class provides simplified access to the data and functionality of the underlying DOM section, allowing for easier manipulation and retrieval of data from DOM.
+	/// The <see cref="EntityDescriptorSection_Old"/> class provides simplified access to the data and functionality of the underlying DOM section, allowing for easier manipulation and retrieval of data from DOM.
 	/// </summary>
-	internal partial class EntityDescriptorSection : DomSectionBase
+	internal partial class EntityDescriptorSection_Old : DomSectionBase
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="EntityDescriptorSection"/> class. Creates an empty <see cref="EntityDescriptorSection"/> object with default settings.
+		/// Initializes a new instance of the <see cref="EntityDescriptorSection_Old"/> class. Creates an empty <see cref="EntityDescriptorSection_Old"/> object with default settings.
 		/// </summary>
-		public EntityDescriptorSection() : base(SlcObject_LinkingIds.Sections.EntityDescriptor.Id)
+		public EntityDescriptorSection_Old() : base(SlcObject_LinkingIds_Old.Sections.EntityDescriptor.Id)
 		{
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="EntityDescriptorSection"/> class using the specified <paramref name="section"/> for initializing the object.
+		/// Initializes a new instance of the <see cref="EntityDescriptorSection_Old"/> class using the specified <paramref name="section"/> for initializing the object.
 		/// </summary>
-		/// <param name="section">The <see cref="Section"/> object that provides data for initializing the <see cref="EntityDescriptorSection"/>. If the section is <c>null</c>, the constructor will not perform any initialization.</param>
-		public EntityDescriptorSection(Section section) : base(section, SlcObject_LinkingIds.Sections.EntityDescriptor.Id)
+		/// <param name="section">The <see cref="Section"/> object that provides data for initializing the <see cref="EntityDescriptorSection_Old"/>. If the section is <c>null</c>, the constructor will not perform any initialization.</param>
+		public EntityDescriptorSection_Old(Section section) : base(section, SlcObject_LinkingIds_Old.Sections.EntityDescriptor.Id)
 		{
 		}
 
@@ -671,7 +675,7 @@ namespace DomHelpers.SlcObject_Linking
 		{
 			get
 			{
-				var wrapper = section.GetValue<String>(SlcObject_LinkingIds.Sections.EntityDescriptor.ID);
+				var wrapper = section.GetValue<String>(SlcObject_LinkingIds_Old.Sections.EntityDescriptor.ID);
 				if (wrapper != null)
 				{
 					return (String)wrapper.Value;
@@ -686,11 +690,11 @@ namespace DomHelpers.SlcObject_Linking
 			{
 				if (value == null)
 				{
-					section.RemoveFieldValueById(SlcObject_LinkingIds.Sections.EntityDescriptor.ID);
+					section.RemoveFieldValueById(SlcObject_LinkingIds_Old.Sections.EntityDescriptor.ID);
 				}
 				else
 				{
-					section.AddOrUpdateValue(SlcObject_LinkingIds.Sections.EntityDescriptor.ID, (String)value);
+					section.AddOrUpdateValue(SlcObject_LinkingIds_Old.Sections.EntityDescriptor.ID, (String)value);
 				}
 			}
 		}
@@ -714,7 +718,7 @@ namespace DomHelpers.SlcObject_Linking
 		{
 			get
 			{
-				var wrapper = section.GetValue<String>(SlcObject_LinkingIds.Sections.EntityDescriptor.DisplayName);
+				var wrapper = section.GetValue<String>(SlcObject_LinkingIds_Old.Sections.EntityDescriptor.DisplayName);
 				if (wrapper != null)
 				{
 					return (String)wrapper.Value;
@@ -729,11 +733,11 @@ namespace DomHelpers.SlcObject_Linking
 			{
 				if (value == null)
 				{
-					section.RemoveFieldValueById(SlcObject_LinkingIds.Sections.EntityDescriptor.DisplayName);
+					section.RemoveFieldValueById(SlcObject_LinkingIds_Old.Sections.EntityDescriptor.DisplayName);
 				}
 				else
 				{
-					section.AddOrUpdateValue(SlcObject_LinkingIds.Sections.EntityDescriptor.DisplayName, (String)value);
+					section.AddOrUpdateValue(SlcObject_LinkingIds_Old.Sections.EntityDescriptor.DisplayName, (String)value);
 				}
 			}
 		}
@@ -757,7 +761,7 @@ namespace DomHelpers.SlcObject_Linking
 		{
 			get
 			{
-				var wrapper = section.GetValue<String>(SlcObject_LinkingIds.Sections.EntityDescriptor.ModelName);
+				var wrapper = section.GetValue<String>(SlcObject_LinkingIds_Old.Sections.EntityDescriptor.ModelName);
 				if (wrapper != null)
 				{
 					return (String)wrapper.Value;
@@ -772,11 +776,11 @@ namespace DomHelpers.SlcObject_Linking
 			{
 				if (value == null)
 				{
-					section.RemoveFieldValueById(SlcObject_LinkingIds.Sections.EntityDescriptor.ModelName);
+					section.RemoveFieldValueById(SlcObject_LinkingIds_Old.Sections.EntityDescriptor.ModelName);
 				}
 				else
 				{
-					section.AddOrUpdateValue(SlcObject_LinkingIds.Sections.EntityDescriptor.ModelName, (String)value);
+					section.AddOrUpdateValue(SlcObject_LinkingIds_Old.Sections.EntityDescriptor.ModelName, (String)value);
 				}
 			}
 		}
@@ -800,7 +804,7 @@ namespace DomHelpers.SlcObject_Linking
 		{
 			get
 			{
-				var wrapper = section.GetValue<String>(SlcObject_LinkingIds.Sections.EntityDescriptor.SolutionName);
+				var wrapper = section.GetValue<String>(SlcObject_LinkingIds_Old.Sections.EntityDescriptor.SolutionName);
 				if (wrapper != null)
 				{
 					return (String)wrapper.Value;
@@ -815,11 +819,11 @@ namespace DomHelpers.SlcObject_Linking
 			{
 				if (value == null)
 				{
-					section.RemoveFieldValueById(SlcObject_LinkingIds.Sections.EntityDescriptor.SolutionName);
+					section.RemoveFieldValueById(SlcObject_LinkingIds_Old.Sections.EntityDescriptor.SolutionName);
 				}
 				else
 				{
-					section.AddOrUpdateValue(SlcObject_LinkingIds.Sections.EntityDescriptor.SolutionName, (String)value);
+					section.AddOrUpdateValue(SlcObject_LinkingIds_Old.Sections.EntityDescriptor.SolutionName, (String)value);
 				}
 			}
 		}
@@ -843,7 +847,7 @@ namespace DomHelpers.SlcObject_Linking
 		{
 			get
 			{
-				var wrapper = section.GetValue<String>(SlcObject_LinkingIds.Sections.EntityDescriptor.ParentID);
+				var wrapper = section.GetValue<String>(SlcObject_LinkingIds_Old.Sections.EntityDescriptor.ParentID);
 				if (wrapper != null)
 				{
 					return (String)wrapper.Value;
@@ -858,11 +862,11 @@ namespace DomHelpers.SlcObject_Linking
 			{
 				if (value == null)
 				{
-					section.RemoveFieldValueById(SlcObject_LinkingIds.Sections.EntityDescriptor.ParentID);
+					section.RemoveFieldValueById(SlcObject_LinkingIds_Old.Sections.EntityDescriptor.ParentID);
 				}
 				else
 				{
-					section.AddOrUpdateValue(SlcObject_LinkingIds.Sections.EntityDescriptor.ParentID, (String)value);
+					section.AddOrUpdateValue(SlcObject_LinkingIds_Old.Sections.EntityDescriptor.ParentID, (String)value);
 				}
 			}
 		}
@@ -886,7 +890,7 @@ namespace DomHelpers.SlcObject_Linking
 		{
 			get
 			{
-				var wrapper = section.GetValue<String>(SlcObject_LinkingIds.Sections.EntityDescriptor.ParentModelName);
+				var wrapper = section.GetValue<String>(SlcObject_LinkingIds_Old.Sections.EntityDescriptor.ParentModelName);
 				if (wrapper != null)
 				{
 					return (String)wrapper.Value;
@@ -901,33 +905,33 @@ namespace DomHelpers.SlcObject_Linking
 			{
 				if (value == null)
 				{
-					section.RemoveFieldValueById(SlcObject_LinkingIds.Sections.EntityDescriptor.ParentModelName);
+					section.RemoveFieldValueById(SlcObject_LinkingIds_Old.Sections.EntityDescriptor.ParentModelName);
 				}
 				else
 				{
-					section.AddOrUpdateValue(SlcObject_LinkingIds.Sections.EntityDescriptor.ParentModelName, (String)value);
+					section.AddOrUpdateValue(SlcObject_LinkingIds_Old.Sections.EntityDescriptor.ParentModelName, (String)value);
 				}
 			}
 		}
 
 		/// <summary>
-		/// Creates a deep copy of the current <see cref="EntityDescriptorSection"/>.
+		/// Creates a deep copy of the current <see cref="EntityDescriptorSection_Old"/>.
 		/// </summary>
-		/// <returns>A new <see cref="EntityDescriptorSection"/> object that is a deep copy of this section.</returns>
-		public EntityDescriptorSection Clone()
+		/// <returns>A new <see cref="EntityDescriptorSection_Old"/> object that is a deep copy of this section.</returns>
+		public EntityDescriptorSection_Old Clone()
 		{
-			return new EntityDescriptorSection((Section)this.ToSection().Clone());
+			return new EntityDescriptorSection_Old((Section)this.ToSection().Clone());
 		}
 
 		/// <summary>
-		/// Creates a duplicate of the current <see cref="EntityDescriptorSection"/> with a new id.
+		/// Creates a duplicate of the current <see cref="EntityDescriptorSection_Old"/> with a new id.
 		/// </summary>
-		/// <returns>A new <see cref="EntityDescriptorSection"/> object that is a copy of this section but with a different id.</returns>
-		public EntityDescriptorSection Duplicate()
+		/// <returns>A new <see cref="EntityDescriptorSection_Old"/> object that is a copy of this section but with a different id.</returns>
+		public EntityDescriptorSection_Old Duplicate()
 		{
 			var section = (Section)this.ToSection().Clone();
 			section.ID = new SectionID(Guid.NewGuid());
-			return new EntityDescriptorSection(section);
+			return new EntityDescriptorSection_Old(section);
 		}
 	}
 }

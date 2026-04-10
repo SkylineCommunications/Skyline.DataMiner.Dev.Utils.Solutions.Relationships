@@ -5,21 +5,17 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
+		<SkylineDataMinerSdkDebug>true</SkylineDataMinerSdkDebug>
 		<DataMinerType>AutomationScript</DataMinerType>
-		<GenerateDataMinerPackage>False</GenerateDataMinerPackage>
+		<GenerateDataMinerPackage>True</GenerateDataMinerPackage>
 		<MinimumRequiredDmVersion>10.4.0.0 - 14003</MinimumRequiredDmVersion>
 		<Version>1.0.0</Version>
 		<VersionComment>Initial Version</VersionComment>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Include="OldDomHelper.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" />
 		<PackageReference Include="Skyline.DataMiner.Dev.Automation" />
-		<PackageReference Include="Skyline.DataMiner.SDM.ObjectLinking.Automation" />
-		<PackageReference Include="Skyline.DataMiner.SDM.Registration.Automation" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -29,13 +25,5 @@
 		<PackageReference Include="Skyline.DataMiner.Utils.SecureCoding.Analyzers">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-	</ItemGroup>
-
-	<!--<ItemGroup>
-		<ProjectReference Include="..\API.Automation\ObjectLinking.Automation.csproj" />
-	</ItemGroup>-->
-
-	<ItemGroup>
-	  <Reference Include="System.IO.Compression" />
 	</ItemGroup>
 </Project>
