@@ -1,13 +1,12 @@
-name: Object Linking Package
+name: Relationships Package
 
 on:
   push:
     branches:
       - '**'
     tags:
-      - "[0-9]+.[0-9]+.[0-9]+"
       - "[0-9]+.[0-9]+.[0-9]+-**"
-	  
+
   workflow_dispatch:
 
 jobs:
@@ -16,4 +15,8 @@ jobs:
     uses: SkylineCommunications/_ReusableWorkflows/.github/workflows/Master Workflow.yml@main
     with:
       configuration: Release
-      sonarCloudProjectName: ${{ vars.SONAR_NAME }}
+      sonarcloud-project-name: ${{ vars.SONAR_NAME }}
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      NUGET_API_KEY: ${{ secrets.NUGETAPIKEY_GITHUB }}
+      DATAMINER_TOKEN: ${{ secrets.DATAMINER_TOKEN }}

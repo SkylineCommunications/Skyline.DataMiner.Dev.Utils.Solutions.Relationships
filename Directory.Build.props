@@ -1,9 +1,19 @@
 <Project>
+	<PropertyGroup>
+		<MinimumRequiredDmVersion>10.5.9.0 - 16293</MinimumRequiredDmVersion>
+		<RootDir>$(MSBuildThisFileDirectory)</RootDir>
+		<AppDir>$(MSBuildThisFileDirectory)\App</AppDir>
+		<DevPackDir>$(MSBuildThisFileDirectory)\DevPack</DevPackDir>
+		<PackageDir>$(MSBuildThisFileDirectory)\Package</PackageDir>
+		<SharedDir>$(MSBuildThisFileDirectory)\Shared</SharedDir>
+		<NugetDir>$(MSBuildThisFileDirectory)\Artifacts\nuget</NugetDir>
+	</PropertyGroup>
+
 	<ItemGroup>
-		<Content Include="..\.editorconfig">
+		<Content Include="$(RootDir)\.editorconfig">
 			<Link>Properties\.editorconfig</Link>
 		</Content>
-		<AdditionalFiles Include="..\allowed_words.dic">
+		<AdditionalFiles Include="$(RootDir)\allowed_words.dic">
 			<Link>Properties\allowed_words.dic</Link>
 		</AdditionalFiles>
 	</ItemGroup>
@@ -12,8 +22,14 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="Skyline.DataMiner.CICD.CSharpAnalysis.Analyzer">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Skyline.DataMiner.Utils.SecureCoding.Analyzers">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 	</ItemGroup>
 
 	<!-- Can be used to set the location of your local nuget store to copy to -->
-	<Import Project="../Directory.Build.props.user" Condition="Exists('../Directory.Build.props.user')" />
+	<Import Project="$(RootDir)\Directory.Build.props.user" Condition="Exists('$(RootDir)\Directory.Build.props.user')" />
 </Project>

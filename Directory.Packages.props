@@ -4,26 +4,28 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="FluentAssertions" Version="7.2.1" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.3.0" />
     <PackageVersion Include="FluentAssertions" Version="7.2.2" />
-    <PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageVersion Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageVersion Include="Moq" Version="4.18.4" />
     <PackageVersion Include="MSTest.TestAdapter" Version="4.1.0" />
     <PackageVersion Include="MSTest.TestFramework" Version="4.1.0" />
     <PackageVersion Include="PublicApiGenerator" Version="11.5.4" />
     <PackageVersion Include="Skyline.DataMiner.Core.AppPackageInstaller" Version="4.0.0" />
     <PackageVersion Include="Skyline.DataMiner.Core.DataMinerSystem.Automation" Version="1.1.3.8" />
-    <PackageVersion Include="Skyline.DataMiner.CICD.CSharpAnalysis.Analyzer" Version="2.1.1" />
+    <PackageVersion Include="Skyline.DataMiner.CICD.CSharpAnalysis.Analyzer" Version="2.1.2" />
     <PackageVersion Include="Skyline.DataMiner.Dev.Automation" Version="10.5.9.2" />
     <PackageVersion Include="Skyline.DataMiner.Dev.Common" Version="10.5.9.2" />
     <PackageVersion Include="Skyline.DataMiner.Dev.Protocol" Version="10.5.9.2" />
     <PackageVersion Include="Skyline.DataMiner.Dev.Utils.SDM.Abstractions" Version="1.0.1" />
-    <PackageVersion Include="Skyline.DataMiner.Dev.Utils.Solutions.ObjectLinking.Automation" Version="0.0.1" />
+    <PackageVersion Include="Skyline.DataMiner.Dev.Utils.Solutions.Relationships.Automation" Version="$(Version)" />
+    <PackageVersion Include="Skyline.DataMiner.Dev.Utils.Solutions.Relationships.Common" Version="$(Version)" />
+    <PackageVersion Include="Skyline.DataMiner.Dev.Utils.Solutions.Relationships.GQI" Version="$(Version)" />
+    <PackageVersion Include="Skyline.DataMiner.Dev.Utils.Solutions.Relationships.Protocol" Version="$(Version)" />
     <PackageVersion Include="Skyline.DataMiner.Files.Skyline.DataMiner.Storage.Types" Version="10.5.9.2" />
+    <PackageVersion Include="Skyline.DataMiner.Files.SLAnalyticsTypes" Version="10.5.9.2" />
     <PackageVersion Include="Skyline.DataMiner.Files.SLNetTypes" Version="10.5.9.2" />
     <PackageVersion Include="Skyline.DataMiner.SDM" Version="1.0.1" />
-    <PackageVersion Include="Skyline.DataMiner.SDM.Linq" Version="1.0.1" />
     <PackageVersion Include="Skyline.DataMiner.SDM.Registration.Automation" Version="2.0.3" />
     <PackageVersion Include="Skyline.DataMiner.SDM.SourceGenerator.Runtime" Version="1.0.1" />
     <PackageVersion Include="Skyline.DataMiner.Utils.DOM" Version="10.5.2.6" />

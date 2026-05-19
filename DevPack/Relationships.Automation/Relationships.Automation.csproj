@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+		<PlatformTarget>AnyCpu</PlatformTarget>
+		<LangVersion>latest</LangVersion>
+		<OutputType>Library</OutputType>
+		<AssemblyTitle>Skyline.DataMiner.Dev.Utils.Solutions.Relationships.Automation</AssemblyTitle>
+		<Product>Skyline.DataMiner.Dev.Utils.Solutions.Relationships.Automation</Product>
+		<AssemblyName>Skyline.DataMiner.Dev.Utils.Solutions.Relationships.Automation</AssemblyName>
+		<RootNamespace>Skyline.DataMiner.Solutions.Relationships.Automation</RootNamespace>
+
+		<PackageId>Skyline.DataMiner.Dev.Utils.Solutions.Relationships.Automation</PackageId>
+		<PackageTags>Skyline;DataMiner</PackageTags>
+		<PackageProjectUrl>https://skyline.be</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<PackageIcon>Icon.png</PackageIcon>
+		<PackageOutputPath>$(NugetDir)</PackageOutputPath>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+
+		<Authors>SkylineCommunications</Authors>
+		<Company>Skyline Communications</Company>
+		<Description>Contains the common models and helper classes to interact with the relationships solution.</Description>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/SkylineCommunications/Skyline.DataMiner.Dev.Utils.Solutions.Relationships</RepositoryUrl>
+		<Deterministic>false</Deterministic>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="README.md" Pack="true" PackagePath="" />
+		<None Include="$(RootDir)\LICENSE.txt" Pack="true" PackagePath="" />
+		<None Include="nuget\Icon.png" Pack="true" PackagePath="" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Skyline.DataMiner.Dev.Automation" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="$(DevPackDir)\Relationships.Common\Relationships.Common.csproj" />
+	</ItemGroup>
+
+	<Target Name="CopyDllToSetupContent" AfterTargets="Build">
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(PackageDir)\Install\SetupContent\DevPack" />
+	</Target>
+
+	<!-- Can be used to set the location of your local nuget store to copy to -->
+	<Target Name="CopyNuGetPackage User" AfterTargets="Pack" Condition="'$(NuGetStorePath)' != '' and '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<Copy SourceFiles="$(PackageOutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(NuGetStorePath)\$(PackageId)" />
+	</Target>
+</Project>

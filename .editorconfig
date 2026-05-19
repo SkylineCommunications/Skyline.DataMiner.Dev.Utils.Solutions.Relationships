@@ -56,6 +56,7 @@ dotnet_diagnostic.SA1027.severity = none
 dotnet_diagnostic.SA1305.severity = warning
 dotnet_diagnostic.SA1118.severity = none
 dotnet_diagnostic.SA1516.severity = none
+dotnet_diagnostic.SA1204.severity = none
 
 # sonar analyzers
 dotnet_diagnostic.S100.severity = warning

@@ -1,0 +1,172 @@
+﻿[assembly: System.Reflection.AssemblyMetadata("RepositoryUrl", "https://github.com/SkylineCommunications/Skyline.DataMiner.Dev.Utils.Solutions.Re" +
+    "lationships")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Relationships.CommonTests")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Relationships.Install")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Skyline.DataMiner.Dev.Utils.Solutions.Relationships.Automation")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Skyline.DataMiner.Dev.Utils.Solutions.Relationships.GQI")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Skyline.DataMiner.Dev.Utils.Solutions.Relationships.Protocol")]
+[assembly: System.Runtime.Versioning.TargetFramework(".NETFramework,Version=v4.8", FrameworkDisplayName=".NET Framework 4.8")]
+namespace Skyline.DataMiner.SDM
+{
+    public static class EntityDescriptorRepository_Extensions
+    {
+        public static Skyline.DataMiner.Solutions.Relationships.Repositories.IEntityDescriptorRepository WithMiddleware(this Skyline.DataMiner.Solutions.Relationships.Repositories.IEntityDescriptorRepository repository, Skyline.DataMiner.SDM.IMiddlewareMarker<Skyline.DataMiner.Solutions.Relationships.EntityDescriptor> middleware) { }
+    }
+    public static class RelationRepository_Extensions
+    {
+        public static Skyline.DataMiner.Solutions.Relationships.Repositories.IRelationRepository WithMiddleware(this Skyline.DataMiner.Solutions.Relationships.Repositories.IRelationRepository repository, Skyline.DataMiner.SDM.IMiddlewareMarker<Skyline.DataMiner.Solutions.Relationships.Relation> middleware) { }
+    }
+}
+namespace Skyline.DataMiner.Solutions.Relationships
+{
+    public static class ConnectionExtensions
+    {
+        public static System.Func<Skyline.DataMiner.Net.IConnection, Skyline.DataMiner.Solutions.Relationships.IRelationshipManager> OverrideGetRelationshipManager;
+        public static Skyline.DataMiner.Solutions.Relationships.IRelationshipManager GetRelationshipManager(this Skyline.DataMiner.Net.IConnection connection) { }
+    }
+    [Skyline.DataMiner.SDM.GenerateExposers]
+    public sealed class EntityDescriptor : Skyline.DataMiner.SDM.SdmObject<Skyline.DataMiner.Solutions.Relationships.EntityDescriptor>
+    {
+        public EntityDescriptor() { }
+        public string DisplayName { get; set; }
+        public string ID { get; set; }
+        public override sealed string Identifier { get; set; }
+        [Skyline.DataMiner.SDM.SdmIgnore]
+        public Skyline.DataMiner.Solutions.Relationships.EntityKey Key { get; }
+        public string ModelName { get; set; }
+        public string ParentID { get; set; }
+        public string ParentModelName { get; set; }
+        public string SolutionID { get; set; }
+        public string SolutionName { get; set; }
+        public Skyline.DataMiner.Solutions.Relationships.EntityStatus Status { get; set; }
+    }
+    public static class EntityDescriptorExposers
+    {
+        public static readonly Skyline.DataMiner.Net.Messages.SLDataGateway.Exposer<Skyline.DataMiner.Solutions.Relationships.EntityDescriptor, string> DisplayName;
+        public static readonly Skyline.DataMiner.Net.Messages.SLDataGateway.Exposer<Skyline.DataMiner.Solutions.Relationships.EntityDescriptor, string> ID;
+        public static readonly Skyline.DataMiner.Net.Messages.SLDataGateway.Exposer<Skyline.DataMiner.Solutions.Relationships.EntityDescriptor, string> Identifier;
+        public static readonly Skyline.DataMiner.Solutions.Relationships.EntityKeyExposer<Skyline.DataMiner.Solutions.Relationships.EntityDescriptor> Key;
+        public static readonly Skyline.DataMiner.Net.Messages.SLDataGateway.Exposer<Skyline.DataMiner.Solutions.Relationships.EntityDescriptor, string> ModelName;
+        public static readonly Skyline.DataMiner.Net.Messages.SLDataGateway.Exposer<Skyline.DataMiner.Solutions.Relationships.EntityDescriptor, string> ParentID;
+        public static readonly Skyline.DataMiner.Net.Messages.SLDataGateway.Exposer<Skyline.DataMiner.Solutions.Relationships.EntityDescriptor, string> ParentModelName;
+        public static readonly Skyline.DataMiner.Net.Messages.SLDataGateway.Exposer<Skyline.DataMiner.Solutions.Relationships.EntityDescriptor, string> SolutionID;
+        public static readonly Skyline.DataMiner.Net.Messages.SLDataGateway.Exposer<Skyline.DataMiner.Solutions.Relationships.EntityDescriptor, string> SolutionName;
+        public static readonly Skyline.DataMiner.Net.Messages.SLDataGateway.Exposer<Skyline.DataMiner.Solutions.Relationships.EntityDescriptor, Skyline.DataMiner.Solutions.Relationships.EntityStatus> Status;
+    }
+    public class EntityKey : System.IEquatable<Skyline.DataMiner.Solutions.Relationships.EntityKey>
+    {
+        public static readonly Skyline.DataMiner.Solutions.Relationships.EntityKey Empty;
+        public EntityKey(string solutionID, string modelName, string id) { }
+        public string ID { get; }
+        public string ModelName { get; }
+        public string SolutionID { get; }
+        public bool Equals(Skyline.DataMiner.Solutions.Relationships.EntityKey other) { }
+        public override bool Equals(object obj) { }
+        public override int GetHashCode() { }
+        public override string ToString() { }
+        public static Skyline.DataMiner.Solutions.Relationships.EntityKey Parse(string key) { }
+        public static bool operator !=(Skyline.DataMiner.Solutions.Relationships.EntityKey left, Skyline.DataMiner.Solutions.Relationships.EntityKey right) { }
+        public static bool operator ==(Skyline.DataMiner.Solutions.Relationships.EntityKey left, Skyline.DataMiner.Solutions.Relationships.EntityKey right) { }
+    }
+    public class EntityKeyExposer<TObject> : Skyline.DataMiner.Net.Messages.SLDataGateway.Exposer<TObject, Skyline.DataMiner.Solutions.Relationships.EntityKey>
+    {
+        public readonly Skyline.DataMiner.Net.Messages.SLDataGateway.Exposer<TObject, string> ID;
+        public readonly Skyline.DataMiner.Net.Messages.SLDataGateway.Exposer<TObject, string> ModelName;
+        public readonly Skyline.DataMiner.Net.Messages.SLDataGateway.Exposer<TObject, string> SolutionID;
+        public Skyline.DataMiner.Net.Messages.SLDataGateway.FilterElement<TObject> Equal(Skyline.DataMiner.Solutions.Relationships.EntityKey key) { }
+        public Skyline.DataMiner.Net.Messages.SLDataGateway.FilterElement<TObject> NotEqual(Skyline.DataMiner.Solutions.Relationships.EntityKey key) { }
+    }
+    public enum EntityStatus
+    {
+        Active = 0,
+        Inactive = 1,
+    }
+    public interface IRelationshipManager : System.IDisposable
+    {
+        Skyline.DataMiner.Solutions.Relationships.Repositories.IEntityDescriptorRepository Entities { get; }
+        Skyline.DataMiner.Solutions.Relationships.Repositories.IRelationRepository Relations { get; }
+    }
+    [Skyline.DataMiner.SDM.GenerateExposers]
+    public sealed class Relation : Skyline.DataMiner.SDM.SdmObject<Skyline.DataMiner.Solutions.Relationships.Relation>
+    {
+        public Relation() { }
+        public override string Identifier { get; set; }
+        [Skyline.DataMiner.SDM.SdmIgnore]
+        public Skyline.DataMiner.Solutions.Relationships.EntityKey SourceKey { get; }
+        public Skyline.DataMiner.Solutions.Relationships.EntityStatus SourceState { get; }
+        [Skyline.DataMiner.SDM.SdmIgnore]
+        public Skyline.DataMiner.Solutions.Relationships.EntityKey TargetKey { get; }
+        public Skyline.DataMiner.Solutions.Relationships.EntityStatus TargetState { get; }
+        public static Skyline.DataMiner.Solutions.Relationships.Relation Between(Skyline.DataMiner.Solutions.Relationships.EntityDescriptor source, Skyline.DataMiner.Solutions.Relationships.EntityDescriptor target) { }
+    }
+    public static class RelationExposers
+    {
+        public static readonly Skyline.DataMiner.Net.Messages.SLDataGateway.Exposer<Skyline.DataMiner.Solutions.Relationships.Relation, string> Identifier;
+        public static readonly Skyline.DataMiner.Solutions.Relationships.EntityKeyExposer<Skyline.DataMiner.Solutions.Relationships.Relation> SourceKey;
+        public static readonly Skyline.DataMiner.Net.Messages.SLDataGateway.Exposer<Skyline.DataMiner.Solutions.Relationships.Relation, Skyline.DataMiner.Solutions.Relationships.EntityStatus> SourceState;
+        public static readonly Skyline.DataMiner.Solutions.Relationships.EntityKeyExposer<Skyline.DataMiner.Solutions.Relationships.Relation> TargetKey;
+        public static readonly Skyline.DataMiner.Net.Messages.SLDataGateway.Exposer<Skyline.DataMiner.Solutions.Relationships.Relation, Skyline.DataMiner.Solutions.Relationships.EntityStatus> TargetState;
+    }
+    public class RelationshipManager : Skyline.DataMiner.Solutions.Relationships.IRelationshipManager, System.IDisposable
+    {
+        public Skyline.DataMiner.Solutions.Relationships.Repositories.IEntityDescriptorRepository Entities { get; }
+        public Skyline.DataMiner.Solutions.Relationships.Repositories.IRelationRepository Relations { get; }
+        public void Dispose() { }
+        protected virtual void Dispose(bool disposing) { }
+    }
+    public static class RelationshipManagerExtensions
+    {
+        public static Skyline.DataMiner.Solutions.Relationships.Query.EntityTraversal From(this Skyline.DataMiner.Solutions.Relationships.IRelationshipManager manager, Skyline.DataMiner.Solutions.Relationships.EntityDescriptor entity) { }
+        public static Skyline.DataMiner.Solutions.Relationships.Query.EntityTraversal From(this Skyline.DataMiner.Solutions.Relationships.IRelationshipManager manager, Skyline.DataMiner.Solutions.Relationships.EntityKey key) { }
+        public static void Link(this Skyline.DataMiner.Solutions.Relationships.IRelationshipManager manager, Skyline.DataMiner.Solutions.Relationships.EntityDescriptor a, Skyline.DataMiner.Solutions.Relationships.EntityDescriptor b) { }
+        public static void Relate(this Skyline.DataMiner.Solutions.Relationships.IRelationshipManager manager, Skyline.DataMiner.Solutions.Relationships.EntityDescriptor source, Skyline.DataMiner.Solutions.Relationships.EntityDescriptor target) { }
+        public static void Unlink(this Skyline.DataMiner.Solutions.Relationships.IRelationshipManager manager, Skyline.DataMiner.Solutions.Relationships.EntityDescriptor a, Skyline.DataMiner.Solutions.Relationships.EntityDescriptor b) { }
+        public static void Unrelate(this Skyline.DataMiner.Solutions.Relationships.IRelationshipManager manager, Skyline.DataMiner.Solutions.Relationships.EntityDescriptor source, Skyline.DataMiner.Solutions.Relationships.EntityDescriptor target) { }
+    }
+}
+namespace Skyline.DataMiner.Solutions.Relationships.Exceptions
+{
+    public class InvalidRelationEntityException : Skyline.DataMiner.Solutions.Relationships.Exceptions.InvalidRelationException
+    {
+        public InvalidRelationEntityException(string message, string relationIdentifier, string entityId) { }
+        public string EntityID { get; }
+    }
+    public class InvalidRelationException : Skyline.DataMiner.Solutions.Relationships.Exceptions.ValidationException
+    {
+        protected InvalidRelationException(string message) { }
+        public InvalidRelationException(string message, string relationIdentifier) { }
+        public Skyline.DataMiner.SDM.SdmObjectReference<Skyline.DataMiner.Solutions.Relationships.Relation> Relation { get; protected set; }
+    }
+    [System.Serializable]
+    public class ValidationException : System.Exception
+    {
+        public ValidationException() { }
+        public ValidationException(string message) { }
+        protected ValidationException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
+        public ValidationException(string message, System.Exception innerException) { }
+    }
+}
+namespace Skyline.DataMiner.Solutions.Relationships.Query
+{
+    public sealed class EntityTraversal
+    {
+        public System.Collections.Generic.IEnumerable<Skyline.DataMiner.Solutions.Relationships.EntityDescriptor> GetNeighbors() { }
+        public System.Collections.Generic.IEnumerable<Skyline.DataMiner.Solutions.Relationships.Relation> GetRelations() { }
+        public System.Collections.Generic.IEnumerable<Skyline.DataMiner.Solutions.Relationships.Query.TraversalResult> Traverse(int maxDepth = 1) { }
+        public Skyline.DataMiner.Solutions.Relationships.Query.EntityTraversal Where(Skyline.DataMiner.Net.Messages.SLDataGateway.FilterElement<Skyline.DataMiner.Solutions.Relationships.EntityDescriptor> filter) { }
+    }
+    public sealed class TraversalResult
+    {
+        public int Depth { get; }
+        public Skyline.DataMiner.Solutions.Relationships.EntityDescriptor Entity { get; }
+        public System.Collections.Generic.IReadOnlyList<Skyline.DataMiner.Solutions.Relationships.Relation> Relations { get; }
+        public Skyline.DataMiner.Solutions.Relationships.EntityDescriptor Via { get; }
+    }
+}
+namespace Skyline.DataMiner.Solutions.Relationships.Repositories
+{
+    [Skyline.DataMiner.SDM.AllowSdmMiddleware]
+    public interface IEntityDescriptorRepository : Skyline.DataMiner.SDM.IBulkCreatableRepository<Skyline.DataMiner.Solutions.Relationships.EntityDescriptor>, Skyline.DataMiner.SDM.IBulkDeletableRepository<Skyline.DataMiner.Solutions.Relationships.EntityDescriptor>, Skyline.DataMiner.SDM.IBulkRepository<Skyline.DataMiner.Solutions.Relationships.EntityDescriptor>, Skyline.DataMiner.SDM.IBulkUpdatableRepository<Skyline.DataMiner.Solutions.Relationships.EntityDescriptor>, Skyline.DataMiner.SDM.ICountableRepository<Skyline.DataMiner.Solutions.Relationships.EntityDescriptor>, Skyline.DataMiner.SDM.ICreatableRepository<Skyline.DataMiner.Solutions.Relationships.EntityDescriptor>, Skyline.DataMiner.SDM.IDeletableRepository<Skyline.DataMiner.Solutions.Relationships.EntityDescriptor>, Skyline.DataMiner.SDM.IPageableRepository<Skyline.DataMiner.Solutions.Relationships.EntityDescriptor>, Skyline.DataMiner.SDM.IReadableRepository<Skyline.DataMiner.Solutions.Relationships.EntityDescriptor>, Skyline.DataMiner.SDM.IRepositoryMarker<Skyline.DataMiner.Solutions.Relationships.EntityDescriptor>, Skyline.DataMiner.SDM.IRepository<Skyline.DataMiner.Solutions.Relationships.EntityDescriptor>, Skyline.DataMiner.SDM.IUpdatableRepository<Skyline.DataMiner.Solutions.Relationships.EntityDescriptor> { }
+    [Skyline.DataMiner.SDM.AllowSdmMiddleware]
+    public interface IRelationRepository : Skyline.DataMiner.SDM.IBulkCreatableRepository<Skyline.DataMiner.Solutions.Relationships.Relation>, Skyline.DataMiner.SDM.IBulkDeletableRepository<Skyline.DataMiner.Solutions.Relationships.Relation>, Skyline.DataMiner.SDM.ICreatableRepository<Skyline.DataMiner.Solutions.Relationships.Relation>, Skyline.DataMiner.SDM.IDeletableRepository<Skyline.DataMiner.Solutions.Relationships.Relation>, Skyline.DataMiner.SDM.IPageableRepository<Skyline.DataMiner.Solutions.Relationships.Relation>, Skyline.DataMiner.SDM.IReadableRepository<Skyline.DataMiner.Solutions.Relationships.Relation>, Skyline.DataMiner.SDM.IRepositoryMarker<Skyline.DataMiner.Solutions.Relationships.Relation> { }
+}

@@ -1,0 +1,38 @@
+<Solution>
+    <Folder Name="/Solution Items/">
+        <File Path=".gitignore" />
+        <File Path="Directory.Build.props" />
+        <File Path="Directory.Build.props.user" />
+        <File Path="Directory.Packages.props" />
+        <File Path="global.json" />
+        <File Path="LICENSE.txt" />
+        <File Path="nuget.config" />
+        <File Path="README.md" />
+    </Folder>
+    <Folder Name="/Solution Items/.github/">
+        <File Path=".github\CODEOWNERS" />
+        <File Path=".github\dependabot.yml" />
+    </Folder>
+    <Folder Name="/Solution Items/.github/workflows/">
+        <File Path=".github/workflows/Master Workflow.yml" />
+    </Folder>
+    <Folder Name="/DevPack/">
+        <Project Path="DevPack/Relationships.Automation/Relationships.Automation.csproj" />
+        <Project Path="DevPack/Relationships.Common/Relationships.Common.csproj" />
+        <Project Path="DevPack/Relationships.CommonTests/Relationships.CommonTests.csproj" />
+        <Project Path="DevPack/Relationships.GQI/Relationships.GQI.csproj" />
+        <Project Path="DevPack/Relationships.Protocol/Relationships.Protocol.csproj" />
+    </Folder>
+    <Folder Name="/Install/">
+        <Project Path="Package/Install.DOM/Relationships.Install.Migration.csproj" />
+        <Project Path="Package/Install/Relationships.Install.csproj">
+            <BuildDependency Project="DevPack/Relationships.Automation/Relationships.Automation.csproj" />
+            <BuildDependency Project="DevPack/Relationships.Common/Relationships.Common.csproj" />
+            <BuildDependency Project="DevPack/Relationships.GQI/Relationships.GQI.csproj" />
+            <BuildDependency Project="DevPack/Relationships.Protocol/Relationships.Protocol.csproj" />
+        </Project>
+    </Folder>
+    <Folder Name="/Shared/">
+        <Project Path="Shared/Relationships.Shared/Relationships.Shared.shproj" />
+    </Folder>
+</Solution>

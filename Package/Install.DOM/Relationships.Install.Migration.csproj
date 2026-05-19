@@ -1,0 +1,21 @@
+﻿<Project Sdk="Skyline.DataMiner.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<RootNamespace>Relationships.Install.DOM</RootNamespace>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<DataMinerType>AutomationScript</DataMinerType>
+		<GenerateDataMinerPackage>False</GenerateDataMinerPackage>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" />
+		<PackageReference Include="Skyline.DataMiner.Dev.Automation" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="System.IO.Compression" />
+	</ItemGroup>
+</Project>

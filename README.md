@@ -1,45 +1,46 @@
-# SDM Object Linking
+# Relationships
 
 When building DataMiner solutions, you often need to create relationships between different objects (such as elements, services, or custom data types). This library provides a standard way to create, manage, and query those links.
 
 It comes with:
-- A C# library for linking objects in your DataMiner solution
+- A C# library for managing the relations in your DataMiner solution
 - Helper classes and models to simplify automation and integration scenarios
 
 ## How to use
 
-The entry point for the library is the **ObjectLinker**. You can use it to create and query links between objects.
+The entry point for the library is the **IRelationshipManager**. You can use it to create and query links between objects.
 
 > [!IMPORTANT]
-> You must install the [SDM Registration](https://catalog.dataminer.services/details/52173e49-9185-4772-9b60-c186ee365a81) before in order for SDM Object Linking to work.
+> You must install the [SDM Registration](https://catalog.dataminer.services/details/52173e49-9185-4772-9b60-c186ee365a81) before in order for Relationships to work.
 
 ### Getting the linker
 
 ```csharp
-// Getting the object linker
+// Getting the Relationship Manager
 
-// Automation Scripts -> nuget Skyline.DataMiner.Solutions.ObjectLinking.Automation
-var linker = engine.GetObjectLinker();
+// Automation Scripts -> nuget Skyline.DataMiner.Dev.Utils.Solutions.Relationships.Automation
+var manager = engine.GetRelationshipManager();
 
-// Connectors -> nuget Skyline.DataMiner.Solutions.ObjectLinking.Protocol
-var linker = protocol.GetObjectLinker();
+// Connectors -> nuget Skyline.DataMiner.Dev.Utils.Solutions.Relationships.Protocol
+var manager = protocol.GetRelationshipManager();
 
-// GQI -> nuget Skyline.DataMiner.Solutions.ObjectLinking.GQI
-var linker = args.DMS.GetObjectLinker(); // In the OnInit life cycle method
+// GQI -> nuget Skyline.DataMiner.Dev.Utils.Solutions.Relationships.GQI
+var manager = args.DMS.GetRelationshipManager(); // In the OnInit life cycle method
 
-// Other -> nuget Skyline.DataMiner.Solutions.ObjectLinking.Common
-var linker = connection.GetObjectLinker();
+// Other -> nuget Skyline.DataMiner.Dev.Utils.Solutions.Relationships.Common
+var manager = connection.GetRelationshipManager();
 ```
 
 ### Creating links
 
 ```csharp
-// Creating a link between 2 entities.
+// Creating a symmetric link between 2 entities.
 var entity1 = new EntityDescriptor
 {
 	ID = "entity1",
 	DisplayName = "Entity 1",
 	ModelName = "Model A",
+	SolutionID = "solution_x",
 	SolutionName = "Solution X",
 	ParentID = "parent1",
 	ParentModelName = "Parent Model A",
@@ -49,24 +50,25 @@ var entity2 = new EntityDescriptor
 	ID = "entity2",
 	DisplayName = "Entity 2",
 	ModelName = "Model B",
+	SolutionID = "solution_y",
 	SolutionName = "Solution Y",
 	ParentID = "parent2",
 	ParentModelName = "Parent Model B",
 };
 
-linker.Create(entity1, entity2);
+manager.Create(entity1, entity2);
 ```
 
-### Querying links
+### Querying relations
 
 ```csharp
-// Querying links between entities.
+// Querying relations between entities.
 var entityId = "entity1";
-var linkedEntities = linker.GetLinkedEntities(entityId);
+var relatedEntities = manager.GetRelatedEntities(entityId);
 
 // Custom filters
-var filter = LinkExposers.EntityDescriptors.SolutionName.Equal("Solution X");
-var linkedEntitiesWithFilter = linker.Links.Read(filter);
+var filter = RelationExposers.Source.SolutionName.Equal("Solution X");
+var relationsWithFilter = linker.Links.Read(filter);
 ```
 
 ### About DataMiner

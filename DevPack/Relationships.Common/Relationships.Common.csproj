@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+		<PlatformTarget>AnyCpu</PlatformTarget>
+		<LangVersion>latest</LangVersion>
+		<OutputType>Library</OutputType>
+		<AssemblyTitle>Skyline.DataMiner.Dev.Utils.Solutions.Relationships.Common</AssemblyTitle>
+		<Product>Skyline.DataMiner.Dev.Utils.Solutions.Relationships.Common</Product>
+		<AssemblyName>Skyline.DataMiner.Dev.Utils.Solutions.Relationships.Common</AssemblyName>
+		<RootNamespace>Skyline.DataMiner.Solutions.Relationships</RootNamespace>
+
+		<PackageId>Skyline.DataMiner.Dev.Utils.Solutions.Relationships.Common</PackageId>
+		<PackageTags>Skyline;DataMiner</PackageTags>
+		<PackageProjectUrl>https://skyline.be</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<PackageIcon>Icon.png</PackageIcon>
+		<PackageOutputPath>$(NugetDir)</PackageOutputPath>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+
+		<Authors>SkylineCommunications</Authors>
+		<Company>Skyline Communications</Company>
+		<Description>Contains the common models and helper classes to interact with the relationships solution.</Description>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/SkylineCommunications/Skyline.DataMiner.Dev.Utils.Solutions.Relationships</RepositoryUrl>
+		<Deterministic>false</Deterministic>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="$(CI) == false">
+		<AssemblyVersion>0.0.*</AssemblyVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="README.md" Pack="true" PackagePath="" />
+		<None Include="$(RootDir)\LICENSE.txt" Pack="true" PackagePath="" />
+		<None Include="nuget\Icon.png" Pack="true" PackagePath="" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" />
+		<PackageReference Include="Skyline.DataMiner.Files.Skyline.DataMiner.Storage.Types" />
+		<PackageReference Include="Skyline.DataMiner.Files.SLNetTypes" />
+		<PackageReference Include="Skyline.DataMiner.SDM" PrivateAssets="true" />
+		<PackageReference Include="Skyline.DataMiner.SDM.SourceGenerator.Runtime" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="Skyline.DataMiner.Dev.Utils.Solutions.Relationships.Automation" />
+		<InternalsVisibleTo Include="Skyline.DataMiner.Dev.Utils.Solutions.Relationships.GQI" />
+		<InternalsVisibleTo Include="Skyline.DataMiner.Dev.Utils.Solutions.Relationships.Protocol" />
+		<InternalsVisibleTo Include="Relationships.Install" />
+		<InternalsVisibleTo Include="Relationships.CommonTests" />
+	</ItemGroup>
+
+	<Target Name="CopyDllToSetupContent" AfterTargets="Build">
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(PackageDir)\Install\SetupContent\DevPack" />
+	</Target>
+
+	<!-- Can be used to set the location of your local nuget store to copy to -->
+	<Target Name="CopyNuGetPackage User" AfterTargets="Pack" Condition="'$(NuGetStorePath)' != '' and '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<Copy SourceFiles="$(PackageOutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(NuGetStorePath)\$(PackageId)" />
+	</Target>
+
+	<Import Project="$(SharedDir)\Relationships.Shared\Relationships.Shared.projitems" Label="Shared" />
+</Project>
