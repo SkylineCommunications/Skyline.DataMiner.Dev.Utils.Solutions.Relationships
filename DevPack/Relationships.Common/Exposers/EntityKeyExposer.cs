@@ -1,3 +1,4 @@
+#pragma warning disable SA1401 // Fields should be private
 namespace Skyline.DataMiner.Solutions.Relationships
 {
 	using System;
@@ -69,3 +70,5 @@ namespace Skyline.DataMiner.Solutions.Relationships
 		}
 	}
 }
+
+#pragma warning restore SA1401 // Fields should be private

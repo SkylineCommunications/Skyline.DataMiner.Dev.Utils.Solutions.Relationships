@@ -40,6 +40,8 @@
 		/// Returns the cached instance when available; otherwise calls the fetch delegate,
 		/// stores the result, and returns it. Returns <c>null</c> when the fetch returns nothing.
 		/// </summary>
+		/// <param name="key">The key of the item to retrieve.</param>
+		/// <returns>The cached or fetched item, or <c>null</c> if not found.</returns>
 		public TItem Get(TKey key)
 		{
 			if (key == null)
@@ -82,6 +84,7 @@
 		/// <summary>
 		/// Adds or updates a single item in the cache.
 		/// </summary>
+		/// <param name="item">The item to add or update.</param>
 		public void Add(TItem item)
 		{
 			if (item == null)
@@ -103,6 +106,7 @@
 		/// <summary>
 		/// Adds or updates multiple items in the cache.
 		/// </summary>
+		/// <param name="items">The sequence of items to add or update.</param>
 		public void Add(IEnumerable<TItem> items)
 		{
 			if (items == null)
@@ -128,8 +132,10 @@
 		}
 
 		/// <summary>
-		/// Removes an entry from the cache. Returns <c>true</c> if the entry was present.
+		/// Removes an entry from the cache.
 		/// </summary>
+		/// <param name="key">The key of the entry to remove.</param>
+		/// <returns><c>true</c> if the entry was present and removed; otherwise <c>false</c>.</returns>
 		public bool Invalidate(TKey key)
 		{
 			if (key == null)

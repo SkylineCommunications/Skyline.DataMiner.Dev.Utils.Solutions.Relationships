@@ -11,7 +11,7 @@
 	/// Provides a fluent API for exploring the relationship graph from a starting entity.
 	/// </summary>
 	/// <remarks>
-	/// Obtain an instance via <see cref="RelationshipManagerExtensions.From"/>.
+	/// Obtain an instance via <see cref="RelationshipManagerExtensions.From(IRelationshipManager, EntityDescriptor)"/>.
 	///
 	/// <para>Traversal is breadth-first and follows edges in both directions
 	/// (a relation A→B is traversable from both A and B).</para>

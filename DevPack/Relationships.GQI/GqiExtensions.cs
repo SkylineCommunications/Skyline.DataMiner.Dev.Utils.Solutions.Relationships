@@ -13,7 +13,9 @@
 		/// Allows an override of the behavior of <see cref="GetRelationshipManager(GQIDMS)"/> to return a Fake or Mock of <see cref="IRelationshipManager"/>.
 		/// Important: When this is used, unit tests should never be run in parallel.
 		/// </summary>
+#pragma warning disable SA1401 // Fields should be private
 		public static Func<GQIDMS, IRelationshipManager> OverrideGetRelationshipManager = (GQIDMS dms) => new RelationshipManager(dms.GetConnection());
+#pragma warning restore SA1401 // Fields should be private
 
 		/// <summary>
 		/// Creates a new <see cref="IRelationshipManager"/> instance using the specified <see cref="GQIDMS"/> connection.

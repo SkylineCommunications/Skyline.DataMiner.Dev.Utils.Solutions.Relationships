@@ -13,7 +13,9 @@
 		/// Allows an override of the behavior of <see cref="GetRelationshipManager"/> to return a Fake or Mock of <see cref="IRelationshipManager"/>.
 		/// Important: When this is used, unit tests should never be run in parallel.
 		/// </summary>
+#pragma warning disable SA1401 // Fields should be private
 		public static Func<IEngine, IRelationshipManager> OverrideGetRelationshipManager = (IEngine engine) => new RelationshipManager(engine.GetUserConnection());
+#pragma warning restore SA1401 // Fields should be private
 
 		/// <summary>
 		/// Gets an <see cref="IRelationshipManager"/> instance for the specified <see cref="IEngine"/>.
