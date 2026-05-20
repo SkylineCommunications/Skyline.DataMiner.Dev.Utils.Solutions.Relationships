@@ -42,6 +42,8 @@
 		/// Returns cached instances when available; otherwise calls the fetch delegate for each cache miss,
 		/// stores the results, and returns them. Items where the fetch returns <c>null</c> are omitted from the result.
 		/// </summary>
+		/// <param name="keys">The collection of keys to retrieve.</param>
+		/// <returns>A collection of items corresponding to the provided keys.</returns>
 		public IEnumerable<TItem> Get(IEnumerable<string> keys)
 		{
 			if (keys == null)
@@ -105,6 +107,8 @@
 		/// Returns cached instances when available; otherwise calls the fetch delegate for each cache miss,
 		/// stores the results, and returns them. Items where the fetch returns <c>null</c> are omitted from the result.
 		/// </summary>
+		/// <param name="items">The collection of items whose identifiers will be used to retrieve cached instances.</param>
+		/// <returns>A collection of items corresponding to the provided items.</returns>
 		public IEnumerable<TItem> Get(IEnumerable<TItem> items)
 		{
 			return Get(items.Select(e => e.Identifier));

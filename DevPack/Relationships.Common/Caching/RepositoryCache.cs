@@ -14,8 +14,11 @@
 	internal class RepositoryCache<TKey, TItem> : IDisposable
 		where TItem : class
 	{
+#pragma warning disable SA1401 // Fields should be private
 		protected readonly ReaderWriterLockSlim _lock = new ReaderWriterLockSlim();
 		protected readonly Dictionary<TKey, TItem> _cache;
+#pragma warning restore SA1401 // Fields should be private
+
 		private readonly Func<TKey, TItem> _fetch;
 		private readonly Func<TItem, TKey> _keySelector;
 		private bool _disposed;

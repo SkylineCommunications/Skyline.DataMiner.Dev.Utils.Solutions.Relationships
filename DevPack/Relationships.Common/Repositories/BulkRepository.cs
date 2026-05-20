@@ -61,7 +61,7 @@
 			}
 
 			// Create the remainder
-			var SuccessfulItems = new List<T>();
+			var successfulItems = new List<T>();
 			var failures = new Dictionary<string, Exception>();
 			var objects = createObjects.Where(obj => !existing.Contains(obj.Identifier)).ToDictionary(obj => obj.Identifier);
 			foreach (var batch in createObjects.Select(ToInstance).Batch(helper.DomInstances.MaxAmountBulkOperation))
@@ -74,14 +74,14 @@
 
 				foreach (var success in result.SuccessfulItems)
 				{
-					SuccessfulItems.Add(FromInstance(success));
+					successfulItems.Add(FromInstance(success));
 				}
 			}
 
 			// If everything went fine, return the successful creations
 			if (!existing.Any() && !failures.Any())
 			{
-				return SuccessfulItems;
+				return successfulItems;
 			}
 
 			// Otherwise, build and throw an exception

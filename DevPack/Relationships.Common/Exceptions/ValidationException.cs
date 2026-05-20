@@ -51,15 +51,6 @@
 	public class InvalidRelationException : ValidationException
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="InvalidRelationException"/> class with a specified error message.
-		/// </summary>
-		/// <param name="message">The message that describes the error.</param>
-		protected InvalidRelationException(string message)
-			: base(message)
-		{
-		}
-
-		/// <summary>
 		/// Initializes a new instance of the <see cref="InvalidRelationException"/> class with a specified error message and relation identifier.
 		/// </summary>
 		/// <param name="message">The message that describes the error.</param>
@@ -68,6 +59,15 @@
 			: base($"{message} Identifier: {relationIdentifier}")
 		{
 			Relation = new SdmObjectReference<Relation>(relationIdentifier);
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="InvalidRelationException"/> class with a specified error message.
+		/// </summary>
+		/// <param name="message">The message that describes the error.</param>
+		protected InvalidRelationException(string message)
+			: base(message)
+		{
 		}
 
 		/// <summary>
