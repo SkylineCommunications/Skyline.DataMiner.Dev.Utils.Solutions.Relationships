@@ -25,7 +25,7 @@ var manager = engine.GetRelationshipManager();
 var manager = protocol.GetRelationshipManager();
 
 // GQI -> nuget Skyline.DataMiner.Dev.Utils.Solutions.Relationships.GQI
-var manager = args.DMS.GetRelationshipManager(); // In the OnInit life cycle method
+var manager = args.GetRelationshipManager(); // In the OnInit life cycle method
 
 // Other -> nuget Skyline.DataMiner.Dev.Utils.Solutions.Relationships.Common
 var manager = connection.GetRelationshipManager();
@@ -56,19 +56,19 @@ var entity2 = new EntityDescriptor
 	ParentModelName = "Parent Model B",
 };
 
-manager.Create(entity1, entity2);
+manager.Link(entity1, entity2);
 ```
 
 ### Querying relations
 
 ```csharp
 // Querying relations between entities.
-var entityId = "entity1";
-var relatedEntities = manager.GetRelatedEntities(entityId);
+var entityId = new EntityKey(solutionId, modelName, "entity1");
+var relatedEntities = manager.From(entityId).GetNeighbors();
 
 // Custom filters
-var filter = RelationExposers.Source.SolutionName.Equal("Solution X");
-var relationsWithFilter = linker.Links.Read(filter);
+var filter = RelationExposers.SourceKey.SolutionID.Equal("solution_x");
+var relationsWithFilter = manager.Relations.Read(filter);
 ```
 
 ### About DataMiner

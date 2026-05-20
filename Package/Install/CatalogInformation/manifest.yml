@@ -70,3 +70,5 @@ owners:
 #   Cannot contain leading or trailing whitespace characters.
 tags:
   - Standard Data Model
+  - Relationships
+  - DevPack

@@ -14,7 +14,8 @@
         <File Path=".github\dependabot.yml" />
     </Folder>
     <Folder Name="/Solution Items/.github/workflows/">
-        <File Path=".github/workflows/Master Workflow.yml" />
+        <File Path=".github/workflows/Internal.yml" />
+        <File Path=".github/workflows/Public.yml" />
     </Folder>
     <Folder Name="/DevPack/">
         <Project Path="DevPack/Relationships.Automation/Relationships.Automation.csproj" />
