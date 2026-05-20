@@ -6,10 +6,8 @@ This guide will help you set up and create your first relationship using the Dat
 
 Before you begin, ensure you have:
 
-1. **DataMiner System**: A running DataMiner Agent (DMA) or cluster
+1. **DataMiner System**: A running DataMiner 10.5.9+ Agent or cluster 
 2. **SDM Registration Package**: Install the [SDM Registration](https://catalog.dataminer.services/details/52173e49-9185-4772-9b60-c186ee365a81) package from the DataMiner Catalog
-3. **Development Environment**: Visual Studio 2019 or later with .NET Framework 4.6.2+ or .NET 6.0+
-4. **NuGet Access**: Access to the NuGet packages (nuget.org or your organization's NuGet feed)
 
 > [!IMPORTANT]
 > The Relationships library requires the SDM Registration package to be installed on your DataMiner system. Without it, the library will not function.
@@ -216,35 +214,24 @@ public class Script
 
 ## Standard DataMiner Entities
 
-When working with built-in DataMiner objects, use consistent model names and solution IDs for interoperability.
+When working with built-in DataMiner objects, use these standard values for consistency and interoperability:
 
-### Recommended Model Names
+| Entity Type | ModelName | ID Format | Example ID | SolutionID | SolutionName |
+|-------------|-----------|-----------|------------|------------|--------------|
+| **Element** | `"Element"` | `"{dmaId}/{elementId}"` | `"123/456"` | `"dataminer"` | `"DataMiner"` |
+| **Service** | `"Service"` | `"{dmaId}/{serviceId}"` | `"123/789"` | `"dataminer"` | `"DataMiner"` |
+| **View** | `"View"` | `"{viewId}"` | `"100"` | `"dataminer"` | `"DataMiner"` |
+| **Booking** | `"Booking"` | `"{bookingGuid}"` | `"guid-string"` | `"srm"` | `"Service & Resource Management"` |
+| **Resource** | `"Resource"` | `"{resourceGuid}"` | `"guid-string"` | `"srm"` | `"Service & Resource Management"` |
+| **ResourcePool** | `"ResourcePool"` | `"{poolGuid}"` | `"guid-string"` | `"srm"` | `"Service & Resource Management"` |
+| **Profile** | `"Profile"` | `"{profileGuid}"` | `"guid-string"` | `"profiles"` | `"Profile Management"` |
+| **AutomationScript** | `"AutomationScript"` | `"{scriptName}"` | `"MyScript"` | `"automation"` | `"Automation"` |
+| **Solution Object** | `"{ObjectType}"` | `"{objectId}"` | `"obj-guid"` | From SDM registration | From SDM registration |
+| **DOM Instance** | `"DomInstance"` | `"{instanceId}"` | `"inst-guid"` | `"dom"` | `"my_module_id"` |
+| **Custom Entity** | Your model name | Your ID format | Your example | `"your-solution-id"` | `"Your Solution Name"` |
 
-Use these standard model names for common DataMiner entities:
-
-| Entity Type | ModelName | ID Format | Example |
-|-------------|-----------|-----------|---------|
-| Element | `"Element"` | `"{dmaId}/{elementId}"` | `"123/456"` |
-| Service | `"Service"` | `"{dmaId}/{serviceId}"` | `"123/789"` |
-| View | `"View"` | `"{viewId}"` | `"100"` |
-| Booking | `"Booking"` | `"{bookingGuid}"` | `"guid-string"` |
-| Resource | `"Resource"` | `"{resourceGuid}"` | `"guid-string"` |
-| ResourcePool | `"ResourcePool"` | `"{poolGuid}"` | `"guid-string"` |
-| Profile | `"Profile"` | `"{profileGuid}"` | `"guid-string"` |
-| AutomationScript | `"AutomationScript"` | `"{scriptName}"` | `"MyScript"` |
-| DOM Instance | `"DomInstance"` | `"{domDefinitionId}/{instanceId}"` | `"def-guid/inst-guid"` |
-
-### Recommended Solution IDs
-
-Use these solution identifiers for organizing entities by domain:
-
-| Domain | SolutionID | SolutionName | Description |
-|--------|------------|--------------|-------------|
-| DataMiner Core | `"dataminer"` | `"DataMiner"` | Core DataMiner objects (elements, services, views) |
-| Bookings & Scheduling | `"srm"` or `"resource-management"` | `"Service & Resource Management"` | Bookings, resources, resource pools |
-| Automation | `"automation"` | `"Automation"` | Automation scripts and workflows |
-| Profile Management | `"profiles"` | `"Profile Management"` | Profile definitions and instances |
-| Custom Solutions | `"your-solution-id"` | `"Your Solution Name"` | Your application-specific entities |
+> [!TIP]
+> Using these standard values ensures consistency across your DataMiner system and makes relationships easier to query and understand.
 
 ### Example: Linking an Element to a Service
 
@@ -296,8 +283,31 @@ var resource = new EntityDescriptor
 manager.Link(booking, resource);
 ```
 
-> [!TIP]
-> Using standard model names and solution IDs ensures consistency across your DataMiner system and makes relationships easier to query and understand.
+### Example: Linking Solution Objects
+
+```csharp
+// From the SDM model registration objects, use the ModelName
+// and SolutionID/SolutionName from SDM solution registration objects
+var ticket = new EntityDescriptor
+{
+    ID = ticketObject.ID,        // Use the Identifier property
+    DisplayName = ticketObject.Name,     // Display name from the object
+    ModelName = "Ticket",                // Model name from solution definition
+    SolutionID = "c132decf-b918-4ee2-be25-1302f41e7705",  // From SDM registration
+    SolutionName = "Ticketing System"    // From SDM registration
+};
+
+var asset = new EntityDescriptor
+{
+    ID = assetObject.ID,
+    DisplayName = assetObject.Name,
+    ModelName = "Asset",
+    SolutionID = "5a1edac2-45aa-4498-8ab7-ee322d07da27",
+    SolutionName = "InfraOps"
+};
+
+manager.Link(ticket, asset);
+```
 
 ## Next Steps
 
@@ -334,3 +344,13 @@ A: Use `manager.Unlink(entity1, entity2)` to remove both directions, or `manager
 
 **Q: Can I use this with elements, services, bookings, etc.?**  
 A: Absolutely! The library is entity-agnostic. You can create relationships between any DataMiner objects or even custom entities. Just create appropriate `EntityDescriptor` instances with meaningful IDs.
+
+## See Also
+
+- **[Migration Guide](./migration-guide.md)** - Migrating from Object Linking to Relationships
+- **[Best Practices](./best-practices.md)** - Guidelines for using the library effectively
+- [Creating Relationships](./creating-a-link-between-2-objects.md) - How to create links and relations
+- [Querying Relationships](./retrieve-linked-objects.md) - Traversal and queries
+- [Advanced Usage](./advanced-usage.md) - Advanced topics and optimization
+- [Examples](./examples.md) - Real-world scenarios
+- [API Reference](./api-reference.md) - Complete API documentation

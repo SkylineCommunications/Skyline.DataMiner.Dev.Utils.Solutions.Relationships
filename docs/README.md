@@ -10,11 +10,13 @@ The Relationships library provides a standardized way to create, manage, and que
 
 ### Getting Started
 - **[Getting Started](./getting-started.md)** - Installation, prerequisites, and your first relationship
-- **[Creating Relationships](./creating-relationships.md)** - How to create bidirectional links and directed relations
-- **[Querying Relationships](./querying-relationships.md)** - Retrieve related entities and traverse the relationship graph
+- **[Migration Guide](./migration-guide.md)** - Migrating from Object Linking to Relationships
+- **[Creating Relationships](./creating-a-link-between-2-objects.md)** - How to create bidirectional links and directed relations
+- **[Querying Relationships](./retrieve-linked-objects.md)** - Retrieve related entities and traverse the relationship graph
 
 ### Advanced Topics
 - **[Advanced Usage](./advanced-usage.md)** - Filtering, entity management, status tracking, and performance tips
+- **[Best Practices](./best-practices.md)** - Guidelines for effective use of the library
 - **[API Reference](./api-reference.md)** - Complete API documentation
 - **[Examples](./examples.md)** - Real-world usage scenarios and patterns
 

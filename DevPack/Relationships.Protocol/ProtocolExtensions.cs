@@ -1,9 +1,8 @@
-﻿namespace Skyline.DataMiner.Solutions.ObjectLinking
+﻿namespace Skyline.DataMiner.Solutions.Relationships
 {
 	using System;
 
 	using Skyline.DataMiner.Scripting;
-	using Skyline.DataMiner.Solutions.Relationships;
 
 	/// <summary>
 	/// Provides extension methods for the <see cref="SLProtocol"/> interface to support relation functionality.
@@ -21,9 +20,9 @@
 		/// <summary>
 		/// Gets an <see cref="IRelationshipManager"/> instance for the specified <see cref="SLProtocol"/>.
 		/// </summary>
-		/// <param name="protocol">The protocol instance for which to get the object linker.</param>
+		/// <param name="protocol">The protocol instance for which to get the relationship manager.</param>
 		/// <returns>
-		/// An <see cref="IRelationshipManager"/> that provides access to object linking operations using the protocol's connection.
+		/// An <see cref="IRelationshipManager"/> that provides access to relationship operations using the protocol's connection.
 		/// </returns>
 		/// <exception cref="ArgumentNullException">
 		/// Thrown when <paramref name="protocol"/> is <c>null</c>.

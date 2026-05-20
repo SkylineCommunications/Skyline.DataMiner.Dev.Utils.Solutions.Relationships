@@ -713,9 +713,11 @@ using (var manager = engine.GetRelationshipManager())
 
 - **[API Reference](./api-reference.md)** - Complete API documentation
 - **[Examples](./examples.md)** - Real-world usage scenarios
-- **[Creating Relationships](./creating-relationships.md)** - How to create links and relations
+- **[Creating Relationships](./creating-a-link-between-2-objects.md)** - How to create links and relations
 
 ## See Also
 
-- [Querying Relationships](./querying-relationships.md) - Traversal and query patterns
+- **[Best Practices](./best-practices.md)** - Comprehensive guidelines for effective use
+- [Querying Relationships](./retrieve-linked-objects.md) - Traversal and query patterns
 - [Getting Started](./getting-started.md) - Installation and basic setup
+- [API Reference](./api-reference.md) - Complete API documentation

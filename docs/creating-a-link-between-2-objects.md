@@ -621,11 +621,13 @@ manager.Relate(multiplexer, transmitter);
 
 ## Next Steps
 
-- **[Querying Relationships](./querying-relationships.md)** - Learn how to retrieve and traverse relationships
+- **[Querying Relationships](./retrieve-linked-objects.md)** - Learn how to retrieve and traverse relationships
 - **[Advanced Usage](./advanced-usage.md)** - Explore filtering, performance optimization, and advanced patterns
 - **[Examples](./examples.md)** - See complete real-world examples
 
 ## See Also
 
+- **[Best Practices](./best-practices.md)** - Comprehensive guidelines for effective use
 - [API Reference](./api-reference.md) - Complete API documentation
 - [Getting Started](./getting-started.md) - Installation and setup guide
+- [Querying Relationships](./retrieve-linked-objects.md) - Traversal and query patterns

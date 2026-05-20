@@ -539,5 +539,7 @@ var elements = manager.From(entity)
 
 ## See Also
 
-- [Creating Relationships](./creating-relationships.md) - How to create links and relations
+- **[Best Practices](./best-practices.md)** - Guidelines for using the library effectively
+- [Creating Relationships](./creating-a-link-between-2-objects.md) - How to create links and relations
 - [Getting Started](./getting-started.md) - Installation and basic setup
+- [Advanced Usage](./advanced-usage.md) - Entity management and optimization

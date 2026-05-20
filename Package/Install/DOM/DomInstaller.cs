@@ -78,7 +78,7 @@
 
 		internal void Log(string message)
 		{
-			_logMethod?.Invoke($"ObjectLinking.Installer: {message}");
+			_logMethod?.Invoke($"Relationships.Installer: {message}");
 		}
 
 		private void ReinitializeManagerStore(string moduleId)

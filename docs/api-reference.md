@@ -958,8 +958,9 @@ catch (ValidationException ex)
 
 ## See Also
 
+- **[Best Practices](./best-practices.md)** - Guidelines for using the library effectively
 - [Getting Started](./getting-started.md) - Installation and setup
-- [Creating Relationships](./creating-relationships.md) - How to create links and relations
-- [Querying Relationships](./querying-relationships.md) - Traversal and queries
+- [Creating Relationships](./creating-a-link-between-2-objects.md) - How to create links and relations
+- [Querying Relationships](./retrieve-linked-objects.md) - Traversal and queries
 - [Advanced Usage](./advanced-usage.md) - Advanced patterns and optimization
 - [Examples](./examples.md) - Real-world examples
