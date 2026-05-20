@@ -34,28 +34,28 @@
 			this.identifierExposer = identifierExposer;
 		}
 
-		public T Create(T createObject)
+		public T Create(T oToCreate)
 		{
-			if (createObject is null)
+			if (oToCreate is null)
 			{
-				throw new ArgumentNullException(nameof(createObject));
+				throw new ArgumentNullException(nameof(oToCreate));
 			}
 
-			var instance = ToInstance(createObject);
+			var instance = ToInstance(oToCreate);
 			instance = helper.DomInstances.Create(instance);
 			return FromInstance(instance);
 		}
 
-		public IReadOnlyCollection<T> Create(IEnumerable<T> createObjects)
+		public IReadOnlyCollection<T> Create(IEnumerable<T> oToCreate)
 		{
-			if (createObjects is null || !createObjects.Any())
+			if (oToCreate is null || !oToCreate.Any())
 			{
 				return Array.Empty<T>();
 			}
 
 			// Check if some of the objects already exist
 			var existing = new HashSet<string>();
-			foreach (var batch in createObjects.Batch(500))
+			foreach (var batch in oToCreate.Batch(500))
 			{
 				existing.UnionWith(Read(new ORFilterElement<T>(batch.Select(obj => identifierExposer.Equal(obj.Identifier)).ToArray())).Select(obj => obj.Identifier));
 			}
@@ -63,8 +63,8 @@
 			// Create the remainder
 			var successfulItems = new List<T>();
 			var failures = new Dictionary<string, Exception>();
-			var objects = createObjects.Where(obj => !existing.Contains(obj.Identifier)).ToDictionary(obj => obj.Identifier);
-			foreach (var batch in createObjects.Select(ToInstance).Batch(helper.DomInstances.MaxAmountBulkOperation))
+			var objects = oToCreate.Where(obj => !existing.Contains(obj.Identifier)).ToDictionary(obj => obj.Identifier);
+			foreach (var batch in oToCreate.Select(ToInstance).Batch(helper.DomInstances.MaxAmountBulkOperation))
 			{
 				helper.DomInstances.TryCreateOrUpdate(batch.ToList(), out var result);
 				foreach (var failure in result.UnsuccessfulIds)
@@ -86,7 +86,7 @@
 
 			// Otherwise, build and throw an exception
 			var exceptionBuilder = new SdmBulkCrudException<T>.Builder();
-			foreach (var obj in createObjects)
+			foreach (var obj in oToCreate)
 			{
 				if (existing.Contains(obj.Identifier))
 				{
@@ -106,17 +106,17 @@
 			throw exceptionBuilder.Build();
 		}
 
-		public IReadOnlyCollection<T> CreateOrUpdate(IEnumerable<T> items)
+		public IReadOnlyCollection<T> CreateOrUpdate(IEnumerable<T> oToCreateOrUpdate)
 		{
-			if (items is null || !items.Any())
+			if (oToCreateOrUpdate is null || !oToCreateOrUpdate.Any())
 			{
 				return Array.Empty<T>();
 			}
 
 			var successful = new List<T>();
 			var exceptionBuilder = new SdmBulkCrudException<T>.Builder();
-			var objects = items.ToDictionary(obj => obj.Identifier);
-			foreach (var batch in items.Select(ToInstance).Batch(helper.DomInstances.MaxAmountBulkOperation))
+			var objects = oToCreateOrUpdate.ToDictionary(obj => obj.Identifier);
+			foreach (var batch in oToCreateOrUpdate.Select(ToInstance).Batch(helper.DomInstances.MaxAmountBulkOperation))
 			{
 				helper.DomInstances.TryCreateOrUpdate(batch.ToList(), out var result);
 				foreach (var failure in result.UnsuccessfulIds)
@@ -254,28 +254,28 @@
 			}
 		}
 
-		public T Update(T updateObject)
+		public T Update(T oToUpdate)
 		{
-			if (updateObject is null)
+			if (oToUpdate is null)
 			{
-				throw new ArgumentNullException(nameof(updateObject));
+				throw new ArgumentNullException(nameof(oToUpdate));
 			}
 
-			var instance = ToInstance(updateObject);
+			var instance = ToInstance(oToUpdate);
 			instance = helper.DomInstances.Update(instance);
 			return FromInstance(instance);
 		}
 
-		public IReadOnlyCollection<T> Update(IEnumerable<T> updateObjects)
+		public IReadOnlyCollection<T> Update(IEnumerable<T> oToUpdate)
 		{
-			if (updateObjects is null || !updateObjects.Any())
+			if (oToUpdate is null || !oToUpdate.Any())
 			{
 				return Array.Empty<T>();
 			}
 
 			// Check if which objects already exist
 			var existing = new HashSet<string>();
-			foreach (var batch in updateObjects.Batch(500))
+			foreach (var batch in oToUpdate.Batch(500))
 			{
 				existing.UnionWith(Read(new ORFilterElement<T>(batch.Select(obj => identifierExposer.Equal(obj.Identifier)).ToArray())).Select(obj => obj.Identifier));
 			}
@@ -283,8 +283,8 @@
 			// Update the existing objects
 			var successfulItems = new List<T>();
 			var failures = new Dictionary<string, Exception>();
-			var objects = updateObjects.Where(obj => existing.Contains(obj.Identifier)).ToDictionary(obj => obj.Identifier);
-			foreach (var batch in updateObjects.Select(ToInstance).Batch(helper.DomInstances.MaxAmountBulkOperation))
+			var objects = oToUpdate.Where(obj => existing.Contains(obj.Identifier)).ToDictionary(obj => obj.Identifier);
+			foreach (var batch in oToUpdate.Select(ToInstance).Batch(helper.DomInstances.MaxAmountBulkOperation))
 			{
 				helper.DomInstances.TryCreateOrUpdate(batch.ToList(), out var result);
 				foreach (var failure in result.UnsuccessfulIds)
@@ -300,7 +300,7 @@
 
 			// Check for failures and build exception if needed
 			var exceptionBuilder = new SdmBulkCrudException<T>.Builder();
-			foreach (var obj in updateObjects)
+			foreach (var obj in oToUpdate)
 			{
 				if (!existing.Contains(obj.Identifier))
 				{
@@ -325,27 +325,27 @@
 			return successfulItems;
 		}
 
-		public void Delete(T deleteObject)
+		public void Delete(T oToDelete)
 		{
-			if (deleteObject is null)
+			if (oToDelete is null)
 			{
-				throw new ArgumentNullException(nameof(deleteObject));
+				throw new ArgumentNullException(nameof(oToDelete));
 			}
 
-			var instance = ToInstance(deleteObject);
+			var instance = ToInstance(oToDelete);
 			helper.DomInstances.Delete(instance);
 		}
 
-		public void Delete(IEnumerable<T> deleteObjects)
+		public void Delete(IEnumerable<T> oToDelete)
 		{
-			if (deleteObjects is null || !deleteObjects.Any())
+			if (oToDelete is null || !oToDelete.Any())
 			{
 				return;
 			}
 
 			var exceptionBuilder = new SdmBulkCrudException<T>.Builder();
-			var objects = deleteObjects.ToDictionary(obj => obj.Identifier);
-			foreach (var batch in deleteObjects.Select(ToInstance).Batch(helper.DomInstances.MaxAmountBulkOperation))
+			var objects = oToDelete.ToDictionary(obj => obj.Identifier);
+			foreach (var batch in oToDelete.Select(ToInstance).Batch(helper.DomInstances.MaxAmountBulkOperation))
 			{
 				helper.DomInstances.TryDelete(batch.ToList(), out var result);
 				foreach (var failure in result.UnsuccessfulIds)

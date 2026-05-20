@@ -3,6 +3,7 @@
 		<TargetFramework>net48</TargetFramework>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<RootNamespace>Relationships.Install.DOM</RootNamespace>
+		<SonarQubeExclude>true</SonarQubeExclude>
 	</PropertyGroup>
 
 	<PropertyGroup>

@@ -14,7 +14,9 @@
 		/// Important: When this is used, unit tests should never be run in parallel.
 		/// </summary>
 #pragma warning disable SA1401 // Fields should be private
+#pragma warning disable S2223 // Non-constant static fields should not be visible
 		public static Func<GQIDMS, IRelationshipManager> OverrideGetRelationshipManager = (GQIDMS dms) => new RelationshipManager(dms.GetConnection());
+#pragma warning restore S2223 // Non-constant static fields should not be visible
 #pragma warning restore SA1401 // Fields should be private
 
 		/// <summary>
