@@ -1,4 +1,69 @@
-# Skyline.DataMiner.Solutions.Relationships.Common
+# Skyline.DataMiner.Dev.Utils.Solutions.Relationships.Common
+
+A NuGet package providing the core models and helper classes for the DataMiner Relationships solution. Use this package when you have direct access to an `IConnection` instance — for example in class libraries, console applications, or unit tests.
+
+## Getting Started
+
+> **Prerequisites:** A running DataMiner 10.5.9+ system with the [SDM Registration](https://catalog.dataminer.services/details/52173e49-9185-4772-9b60-c186ee365a81) package installed.
+
+Obtain an `IRelationshipManager` from any `IConnection` instance and use it to register entities and the relationships between them. Always wrap it in a `using` block to properly clean up resources.
+
+**Link two entities (bidirectional):**
+
+```csharp
+using (var manager = connection.GetRelationshipManager())
+{
+    var elementA = new EntityDescriptor
+    {
+        ID = "element-a",
+        DisplayName = "Element A",
+        ModelName = "Element",
+        SolutionID = "my-solution",
+        SolutionName = "My Solution"
+    };
+
+    var elementB = new EntityDescriptor
+    {
+        ID = "element-b",
+        DisplayName = "Element B",
+        ModelName = "Element",
+        SolutionID = "my-solution",
+        SolutionName = "My Solution"
+    };
+
+    manager.Link(elementA, elementB); // creates a ↔ b
+}
+```
+
+**Get directly connected entities:**
+
+```csharp
+using (var manager = connection.GetRelationshipManager())
+{
+    var neighbors = manager.From(elementA).GetNeighbors();
+    foreach (var neighbor in neighbors)
+        Console.WriteLine($"Connected to: {neighbor.DisplayName}");
+}
+```
+
+**Traverse the graph up to N hops:**
+
+```csharp
+using (var manager = connection.GetRelationshipManager())
+{
+    var results = manager.From(elementA).Traverse(maxDepth: 3);
+    foreach (var result in results)
+        Console.WriteLine($"{result.Entity.DisplayName} — {result.Depth} hop(s) away");
+}
+```
+
+**Create a directed (one-way) relation:**
+
+```csharp
+manager.Relate(source, target); // creates source → target only
+```
+
+For more details see the [full documentation](https://github.com/SkylineCommunications/Skyline.DataMiner.Dev.Utils.Solutions.ObjectLinking/tree/1.0.X/docs).
 
 ## About
 
