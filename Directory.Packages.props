@@ -26,7 +26,7 @@
     <PackageVersion Include="Skyline.DataMiner.Files.SLAnalyticsTypes" Version="10.5.9.2" />
     <PackageVersion Include="Skyline.DataMiner.Files.SLNetTypes" Version="10.5.9.2" />
     <PackageVersion Include="Skyline.DataMiner.SDM" Version="1.0.1" />
-    <PackageVersion Include="Skyline.DataMiner.SDM.Registration.Automation" Version="2.0.3" />
+    <PackageVersion Include="Skyline.DataMiner.SDM.Registration.Automation" Version="2.1.2" />
     <PackageVersion Include="Skyline.DataMiner.SDM.SourceGenerator.Runtime" Version="1.0.1" />
     <PackageVersion Include="Skyline.DataMiner.Utils.DOM" Version="10.5.2.6" />
     <PackageVersion Include="Skyline.DataMiner.Utils.SecureCoding" Version="2.2.3" />

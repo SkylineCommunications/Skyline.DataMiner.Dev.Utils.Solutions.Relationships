@@ -32,6 +32,7 @@
             <BuildDependency Project="DevPack/Relationships.GQI/Relationships.GQI.csproj" />
             <BuildDependency Project="DevPack/Relationships.Protocol/Relationships.Protocol.csproj" />
         </Project>
+        <Project Path="Package/Install.Registration/Relationships.Install.Registration.csproj" Id="73b05d9a-2279-4f98-bec7-ed51e1d45fc5" />
     </Folder>
     <Folder Name="/Shared/">
         <Project Path="Shared/Relationships.Shared/Relationships.Shared.shproj" />
