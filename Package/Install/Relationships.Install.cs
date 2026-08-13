@@ -52,9 +52,12 @@ DATE		VERSION		AUTHOR			COMMENTS
 using System;
 using System.IO;
 
+using Microsoft.Win32;
+
 using Skyline.AppInstaller;
 using Skyline.DataMiner.Automation;
 using Skyline.DataMiner.Net.AppPackages;
+using Skyline.DataMiner.Net.Messages;
 using Skyline.DataMiner.Solutions.Relationships.Install.DevPack;
 using Skyline.DataMiner.Solutions.Relationships.Install.DOM;
 using Skyline.DataMiner.Utils.SecureCoding.SecureIO;
@@ -64,6 +67,8 @@ using Skyline.DataMiner.Utils.SecureCoding.SecureIO;
 /// </summary>
 public class Script
 {
+	private const string RegistrationScriptName = "Relationships.Install.Registration";
+
 	/// <summary>
 	/// The script entry point.
 	/// </summary>
@@ -87,6 +92,9 @@ public class Script
 			// Install the Relationships DevPack
 			var devPackInstaller = new DevPackInstaller(installer, engine);
 			devPackInstaller.DeployAllDevPacks();
+
+			// Register the Relationships DevPack
+			Register(engine, context, installer.Log);
 
 			// Install DOM Module
 			var domInstaller = new DomInstaller(engine, installer.Log);
@@ -113,5 +121,43 @@ public class Script
 		}
 
 		return result;
+	}
+
+	private void Register(IEngine engine, AppInstallContext context, Action<string> logMethod = null)
+	{
+		try
+		{
+			logMethod?.Invoke($"Registering Relationships solution [fc085eae-dbc4-4d81-9758-096d46f7330d] with version {context.AppInfo.Version} in SDM..");
+
+			var subScript = engine.PrepareSubScript(RegistrationScriptName);
+			subScript.SelectScriptParam("version", context.AppInfo.Version);
+			subScript.Synchronous = true;
+			subScript.ExtendedErrorInfo = true;
+			subScript.InheritScriptOutput = true;
+			subScript.StartScript();
+
+			DeleteScript(engine, RegistrationScriptName);
+		}
+		catch
+		{
+			logMethod?.Invoke("Failed to register the solution in SDM.");
+		}
+	}
+
+	private void DeleteScript(IEngine engine, string scriptName)
+	{
+		try
+		{
+			var deleteMessage = new DeleteAutomationScriptMessage
+			{
+				Name = scriptName,
+			};
+
+			engine.SendSLNetSingleResponseMessage(deleteMessage);
+		}
+		catch (Exception ex)
+		{
+			engine.Log($"Failed to delete script {scriptName}. Exception: {ex}");
+		}
 	}
 }
